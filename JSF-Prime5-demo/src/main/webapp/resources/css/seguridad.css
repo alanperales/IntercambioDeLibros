@@ -1,0 +1,169 @@
+@CHARSET "ISO-8859-1";
+#cabecera {
+	Color: #fff;
+	Font-Size: 12px;
+	text-align: left;
+	padding: 15px 0 0 20px;
+	height: 20px;
+	width: 1152px;
+	display: block;
+	background-color: #3F73AF;
+	margin: 0 0 0 9px;
+}
+
+#logo {
+	float: left;
+	width: 270px;
+	height: 80px;
+	display: block;
+	margin: 10px 0 0 10px;
+}
+
+#titulo {
+	float: left;
+	width: 445px;
+	height: 69px;
+	display: block;
+	margin: 0 8px 0 8px;
+}
+
+#banner {
+	float: right;
+	width: 100px;
+	height: 69px;
+	display: block;
+	margin: 0 8px 0 8px;
+}
+
+#container {
+	background: url("../../presentacion/images/madre_bg_n.gif") repeat-y
+		scroll left top white;
+	border: 0 none;
+	color: #333;
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	width: 1190px;
+	border-image: initial;
+}
+
+#contenido {
+	height: auto;
+	overflow: hidden;
+	padding: 0 15px 15px 15px;
+}
+
+#footer {
+	Color: #fff;
+	Font-Size: 12px;
+	text-align: left;
+	padding: 15px 0 0 20px;
+	height: 30px;
+	width: 1152px;
+	display: block;
+	background-color: #3F73AF;
+	margin: 0 0 0 9px;
+}
+
+#footer2 {
+	Color: #fff;
+	Font-Size: 9px;
+	text-align: left;
+	padding: 15px 0 0 20px;
+	height: 30px;
+	width: 1152px;
+	display: block;
+	background-color: #00529B;
+	margin: 970px 0 0 9px;
+}
+
+#contenido2 {
+	float: left;
+	height: auto;
+	width: auto;
+	padding: 0px 15px 15px 15px;
+}
+
+.ui-menu {
+	background: #3F73AF;	
+}
+
+.necesario {
+	color: red;
+}
+
+.ui-menuitem-link .ui-menuitem-text {
+	color: #f1f1f1;
+}
+
+.ui-selectoneradio td {
+	border-width: 0px;
+}
+
+.ui-widget-content {
+	border: 0px solid #DDD;
+}
+
+
+.verdeOscuro {
+	background: green;
+	color: white;
+}
+
+form .rojo {
+	background: red;
+	color: white;
+}
+
+form .amarillo {
+	background: yellow;
+	color: black;
+}
+
+form .naranja {
+	background: orange;
+	color: white;
+}
+
+.centered {
+	margin: 0px auto;
+}
+
+.colorRowWhite {
+	color: white;
+}
+
+.colorRowBlack {
+	color: black;
+}
+
+.eventoVerde,.eventoVerde .fc-event-skin,.eventoVerde a {
+	background-color: green;
+	color: white;
+	border-color: greenyellow;
+}
+
+.eventoAmarillo,.eventoAmarillo .fc-event-skin,.eventoAmarillo a {
+	background-color: yellow;
+	color: black;
+	border-color: yellow;
+}
+
+.eventoNaranja,.eventoNaranja .fc-event-skin,.eventoNaranja a {
+	background-color: orange;
+	color: white;
+	border-color: orange;
+}
+
+.eventoRojo,.eventoRojo .fc-event-skin,.eventoRojo a {
+	background-color: red;
+	color: white;
+	border-color: red;
+}
+
+.ui-panelgrid td {
+	border-color: inherit;
+	border-style: solid;
+	border-width: 0px !important;
+
+}

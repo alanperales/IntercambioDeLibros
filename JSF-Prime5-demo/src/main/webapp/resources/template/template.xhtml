@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+		<title>Sistema de Intercambio de Libros</title>
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/themePrime/primefaces.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/themePrime/theme.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/themePrime/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/themePrime/general-style.css" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/themePrime/default.css" />
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.autoText-1.0.0.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.autoNumeric-1.6.2.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/ValidacionUtil.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/funciones.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/jquery.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/resources/js/bootstrap.js">$.noConflict();</script>	
+		<script src="http://maps.google.com/maps/api/js?key=AIzaSyDJsnUjjpzHbdBmzdCsv7hq8ngC5uODn3U" type="text/javascript"></script>
+		<h:outputText value="&lt;!--[if lt IE 9]&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;#{request.contextPath}/resources/css/bootstrap-ie7.css&quot;/&gt;&lt;![endif]--&gt;"
+			escape="false">
+		</h:outputText>
+		<script type="text/javascript">
+			JQuery(document).ready(funtion($){
+				var wintimeout;
+				var context = document.getElementById("hiddenContextName").value;
+				function SetWinTimeout(){
+					wintimeout = window.setTimeout(
+							"window.location.href='" + context
+							+ "/faces/login.xhtml';", 7200000); //after 120 mins i.e. 120 * 60 * 1000							
+				}
+				$('body').click(function(){
+					window.clearTimeout(wintimeout); //when user clicks remove timeout and reset it	 
+					SetWinTimeout();
+				});
+				SetWinTimeout();
+				carga();
+			});
+		</script>
+		<script type="text/javascript">
+			function go(loc){
+				document.getElementById('frmFrameItem').src = loc;
+			}
+			function cambiarPlantilla(obj){
+				proveedor = obj.value;				
+				document.getElementById("formularioFichaClientes:tabs:txtObservacion_input").innerHTML = proveedor;
+			}
+			function enviarABanco(obj){
+				obj.disabled = "disabled";
+				obj.value = "Enviando...";
+			}
+		</script>
+		<script type="text/javascript">
+		PrimeFaces.locales['es'] = {
+				closeText : 'Cerrar',
+				prevText : 'Anterior',
+				nextText : 'Siguiente',
+				monthNames : [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 
+							   'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+				monthNamesShort : [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 
+									'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+				dayNames : [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+				dayNamesShort : [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+				dayNamesMin : [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+				weekHeader : 'Semana',
+				firstDay : 1,
+				isRTL : false,
+				showMonthAfterYear : false,
+				yearSuffix : '',
+				timeOnlyTitle : 'Sólo hora',
+				timeText : 'Tiempo',
+				hourText : 'Hora',
+				minuteText : 'Minuto',
+				secondText : 'Segundo',
+				currentText : 'Fecha actual',
+				ampm : false,
+				month : 'Mes',
+				week : 'Semana',
+				day : 'Día',
+				allDayText : 'Todo el día'
+			};
+			function carga(){
+				$(".formatoLetra").autoText({
+					caracteres : " abcdefghijklmnopqrstuvwxyz\u00ED\u00FA\u00F3\u00E9\u00E1\u00F1\u0008"
+				});
+				$(".formatoLetraNumero").autoText({
+					caracteres : " 0123456789abcdefghijklmnopqrstuvwxyz\u00ED\u00FA\u00F3\u00E9\u00E1\u00F1\u0008"
+				});
+				$(".formatoNumero").autoText({
+					caracteres : "0123456789"
+				});
+			}
+		</script>
+	</h:head>
+	<h:body>
+		<f:view>
+			<f:loadBundle basename="messages" var="m"></f:loadBundle>
+			<div class="anchoPaginaGeneral">
+				<div id="header">
+					<h:panelGrid style="width:100%">
+						<h:form id="t0">
+							<h:panelGrid columns="1" style="width:100%;" cellpadding="0" cellspacing="0">
+								<h:panelGrid columns="2" style="width:100%;" cellpadding="0" cellspacing="0">
+									<h:panelGrid columns="1" style="width:100%" cellpadding="0" cellspacing="0">
+										<h:graphicImage url="../resources/themePrime/images/logotipo-bbva.png"></h:graphicImage>
+									</h:panelGrid>
+									<h:panelGrid columns="1" style="width:100%" cellpadding="0" cellspacing="0">
+										<h:panelGrid styleClass="sesion" columns="2" style="width:auto" cellpadding="0" cellspacing="0">
+											<h:panelGrid columns="1" style="width:auto" cellpadding="0" cellspacing="0">
+											
+												<p:commandLink id="nombreUsuario"													
+													value="#{loginModel.nombres} #{loginModel.apellidos}"
+													action="#{loginController.cargarOfertadosSolicitados}"
+													oncomplete="PF('dialogUsuarioInfo').show();"													
+													style="color:#4871BE; font-size:12px; font-weight: 700;">
+												</p:commandLink>
+<!-- 												<h:outputText id="nombreUsuario"
+															  value="#{loginModel.nombres} #{loginModel.apellidos}"
+															  style="color:#4871BE; font-size:12px; font-weight: 700;">
+												</h:outputText>	 -->											
+											</h:panelGrid>
+											<h:commandButton styleClass="user-desconect"
+															 title="Desconectar" 
+															 action="#{loginController.cerrarSesion}"
+															 image="../resources/themePrime/images/bt-signup.png">
+											</h:commandButton>													 
+										</h:panelGrid>
+										<h:outputText class="producto" value="Sistema de Intercambio de Libros">
+										</h:outputText>
+									</h:panelGrid>
+								</h:panelGrid>
+							</h:panelGrid>
+							<h:panelGrid columns="1" style="width:100%;" cellpadding="0" cellspacing="0">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%" class="CabeceraBloque">
+									<tr>
+										<td>
+											<p:growl id="messages" showDetail="true"></p:growl>
+										</td>
+									</tr>
+								</table>
+							</h:panelGrid>
+							<p:dialog widgetVar="dialogUsuarioInfo" 
+									 id="dialogUsuarioInfo"
+									 header="Datos de Usuario"
+									 modal="true" 
+									 resizable="false"
+									 closable="true"
+									 closeOnEscape="true"
+									 showHeader="true" 
+									 width="700" 
+									 height="700">
+									<f:facet name="header">
+										<h:outputText value="Datos de Usuario" style="font-size:20px;font-weight:700;" />
+									</f:facet>
+									<p:panelGrid styleClass="columnPanelGrid" style="border-style:solid; border-width:1px; width:380px;">
+										<p:row>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<h:outputText value="#{loginModel.nombres} #{loginModel.apellidos}" escape="false" />
+											</p:column>
+										</p:row>
+										<p:row>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<h:outputText value="#{loginModel.ubigeo}" escape="false" />
+											</p:column>
+										</p:row>
+										<p:row>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<h:outputText value="Lima" escape="false" />
+											</p:column>
+										</p:row>																														
+										<p:row>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<h:panelGroup id="pGroupGrillasOfertados">
+													<p:dataTable id="tblOfertados"
+														value="#{loginModel.listaOfertados}"
+														var="reporteO" paginator="true" rows="10" rowIndexVar="rowInfo"
+														dynamic="true" resizableColumns="true" paginatorPosition="bottom"
+														widgetVar="tblReporte"  lazy="true"
+														scrollable="true"
+														style="border-style:solid;border-width: 0px;"
+														emptyMessage="No se encontraron registros.">
+														<f:facet name="header">
+															<h:outputText value="Tabla de Ofertados" />
+														</f:facet>
+														<p:column style="width:7%; text-align: center !important;">
+															<f:facet name="header">
+																<h:outputText value=""
+																	style="width:5%; text-align: center !important;" />
+															</f:facet>
+															<p:rowToggler />
+														</p:column>
+														<p:column style="width:55%; text-align: center !important;">
+															<f:facet name="header">
+																<h:outputText value="Titulo" escape="false" />
+															</f:facet>
+															<h:outputText value="#{reporteI.TX_Titulo}" />
+														</p:column>
+														<p:column style="width:45%; text-align: center;">
+															<f:facet name="header">
+																<h:outputText value="Autor" />
+															</f:facet>
+															<h:outputText value="#{reporteO.AT_Nombre} #{reporteO.AT_ApellidoPaterno}" />
+														</p:column>								
+														<p:column style="width:25%; text-align: center;">
+															<f:facet name="header">
+																<h:outputText value="Editorial" escape="false"/>
+															</f:facet>
+															<h:outputText value="#{reporteO.MI_NumEdicion}"/>
+														</p:column>								
+														<p:column style="width:25%; text-align: center;">
+															<f:facet name="header">
+																<h:outputText value="Edicion" escape="false"/>
+															</f:facet>
+															<h:outputText value="#{reporteO.MI_NumEdicion}" />
+														</p:column>
+														<p:column style="width:25%; text-align: center;">
+															<f:facet name="header">
+																<h:outputText value="ISBN" escape="false"/>
+															</f:facet>
+															<h:outputText value="#{reporteO.MI_ISBN}" />
+														</p:column>	
+													</p:dataTable>
+												</h:panelGroup>												
+											</p:column>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<h:panelGroup id="pGroupGrillasSolicitadas">
+													<p:dataTable id="tblSolicitados"
+														value="#{loginModel.listaSolicitados}"
+														var="reporteS" paginator="true" rows="10" rowIndexVar="rowInfo"
+														dynamic="true" resizableColumns="true" paginatorPosition="bottom"
+														widgetVar="tblReporte"  lazy="true"
+														scrollable="true"
+														style="border-style:solid;border-width: 0px;"
+														emptyMessage="No se encontraron registros.">
+														<f:facet name="header">
+															<h:outputText value="Tabla de Solicitados" />
+														</f:facet>
+														<p:column style="width:7%; text-align: center !important;">
+															<f:facet name="header">
+																<h:outputText value=""
+																	style="width:5%; text-align: center !important;" />
+															</f:facet>
+															<p:rowToggler />
+														</p:column>
+														<p:column style="width:55%; text-align: center !important;">
+															<f:facet name="header">
+																<h:outputText value="Titulo" escape="false" />
+															</f:facet>
+															<h:outputText value="#{reporteS.TX_Titulo}" />
+														</p:column>
+														<p:column style="width:45%; text-align: center;">
+															<f:facet name="header">
+																<h:outputText value="Autor" />
+															</f:facet>
+															<h:outputText value="#{reporteS.AT_Nombre} #{reporteS.AT_ApellidoPaterno}" />
+														</p:column>
+													</p:dataTable>
+												</h:panelGroup>												
+											</p:column>											
+										</p:row>
+										<p:row>
+											<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center; width:80px;">
+												<p:commandButton id="Cerrar"
+				  											 value="Cerrar"
+				  											 icon="ui-icon-arrowreturnthick-1-w"					  											
+				  											 onclick="PF('dialogUsuarioInfo').hide();">
+				  								</p:commandButton>
+											</p:column>
+										</p:row>
+									</p:panelGrid>									 
+							</p:dialog>
+						</h:form>
+					</h:panelGrid>
+				</div>
+				<ui:insert name="menu">
+					<ui:include src="menu.xhtml"></ui:include>
+				</ui:insert>
+				<br />
+				<ui:insert name="cuerpo">
+				</ui:insert>
+				<br />
+				<div id="pie">
+					<ui:insert name="pie">
+						<ui:include src="pie.xhtml"/>
+					</ui:insert>
+				</div>				
+			</div>
+			<ui:insert name="scriptFooter">
+			</ui:insert>
+			<form>
+				<input type="hidden" id="hiddenContextName" value="" />
+			</form>
+		</f:view>
+	</h:body>	
+</html>

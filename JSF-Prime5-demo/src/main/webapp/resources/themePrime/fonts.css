@@ -1,0 +1,26 @@
+
+
+/**** fuente BBVA Web *****/
+@font-face {
+  font-family: 'BBVA Web Book';
+  src: url("font/bbvaweb-book.eot");
+  src: url("font/bbvaweb-book.eot?#iefix") format("embedded-opentype"), url("font/bbvaweb-book.woff") format("woff"), url("font/bbvaweb-book.ttf") format("truetype"), url("font/bbvaweb-book.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BBVA Web Light';
+  src: url("font/bbvaweb-light.eot");
+  src: url("font/bbvaweb-light.eot?#iefix") format("embedded-opentype"), url("font/bbvaweb-light.woff") format("woff"), url("font/bbvaweb-light.ttf") format("truetype"), url("font/bbvaweb-light.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BBVA Web Medium';
+  src: url("font/bbvaweb-medium.eot");
+  src: url("font/bbvaweb-medium.eot?#iefix") format("embedded-opentype"), url("font/bbvaweb-medium.woff") format("woff"), url("font/bbvaweb-medium.ttf") format("truetype"), url("font/bbvaweb-medium.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

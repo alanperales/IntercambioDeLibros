@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Sistema de Intercambio de Libros</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/resources/template/template.xhtml">
+			<ui:define name="cuerpo">
+				<!-- init -->
+				<f:event type="preRenderView" listener="#{principalController.init}"/>
+				<f:event type="preRenderView" listener="#{externoController.init}"/>
+				<h:form id="formularioIntercambioConfirmacion">
+					<p:panel id="panelIntercamcioConfirmacion" widgetVar="panelIntercamcioConfirmacion" style="text-align: center;">
+						<ui:include src="/intercambio-confirmacion-dialog.xhtml"/>
+					</p:panel>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Aceptar" type="button" styleClass="ui-confirmdialog-yes"/>
+						<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>
+					</p:confirmDialog>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</html>

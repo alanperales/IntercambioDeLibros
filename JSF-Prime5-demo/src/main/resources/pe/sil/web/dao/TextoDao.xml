@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.sil.web.dao.TextoDao">
+    <!-- <cache /> -->    
+	<select id="obtenerTextoPublico" resultType="pe.sil.web.entities.Texto" statementType="CALLABLE">
+		{CALL SIL3.USP_OBTENER_TEXTOS_INTERCAMBIO()}
+    </select>
+    <select id="obtenerTextoSolicitado" resultType="pe.sil.web.entities.Texto" statementType="CALLABLE">
+		{CALL SIL3.USP_OBTENER_TEXTO_SOLICITADO(#{codigoTexto,javaType=Integer,jdbcType=INTEGER,mode=IN})}
+    </select>
+</mapper>

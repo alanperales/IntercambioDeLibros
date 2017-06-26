@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosClienteDatosGenerales" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="85b20f0d-fa76-4079-bb93-4847b73812d7">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cuotaInicial" class="java.math.BigDecimal"/>
+	<parameter name="valorVenta" class="java.math.BigDecimal"/>
+	<parameter name="riesgoNeto" class="java.math.BigDecimal"/>
+	<parameter name="importeDesembolsado" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="126" height="15" uuid="588c0cf6-0c2c-4b14-af0d-c59fec427536"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuota Inicial: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="15" width="126" height="17" uuid="426e18c5-93da-4cfc-a2ba-3eb5f36e77d2"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{cuotaInicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="126" y="0" width="119" height="15" uuid="ce5f9118-7904-42fc-8a54-39d3c161e6b6"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Venta: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="126" y="15" width="119" height="17" uuid="0f2896c0-5452-4baf-876b-2abb7e3d0ecb"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{valorVenta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="245" y="0" width="119" height="15" uuid="86b19f5f-17af-45be-b7e1-dd6fb3a222bd"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Riesgo Neto: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="245" y="15" width="119" height="17" uuid="d88c4ca6-3bf8-4474-9e6f-68698d8b257d"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{riesgoNeto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="364" y="0" width="191" height="15" uuid="18ddfa60-25ac-47c2-8b88-45e9734e89d2"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Desembolsado: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="15" width="191" height="17" uuid="cd730fa7-c1e5-4731-b586-aa4c1d47d657"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{importeDesembolsado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="32" width="555" height="17" uuid="c33e42ec-643c-4caa-8f65-d43d5f480f37"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Sistema Web Proveedores</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/resources/template/template.xhtml">
+			<ui:define name="cuerpo">			
+				<!-- init -->
+				<f:event type="preRenderView" listener="#{reporteIntercambioController.init()}" />
+				<h:form id="formularioReporteRankingProveedor" enctype="multipart/form-data" acceptcharset="ISO-8859-1">
+					<p:panel id="basic">
+						<f:facet name="header">
+							<p:panelGrid styleClass="columnPanelGrid">
+								<p:row>
+									<p:column
+										style="width:600px; text-align:left !important; color:#0072c9 !important">
+										<h:outputText value="Comercializacion"
+											styleClass="panelTitle" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</f:facet>
+
+						<p:panel id="pnlFiltroBusqueda" styleClass="panelAplication"
+							header="">
+							<p:panelGrid id="pnlGridFiltroBusqueda"
+								styleClass="columnPanelGrid" style="width:750px !important;">
+								<p:row>
+									<p:column style="width:150px !important;">
+										<p:outputLabel value="Codigo Producto:"></p:outputLabel>
+									</p:column>	
+									<p:column style="width:190px !important;">
+										<h:inputText id="txtCodigoProducto"
+		  									     value=""
+		  									     onchange="this.value=this.value.toUpperCase()"
+	  									     	 onblur="this.value=this.value.toUpperCase()"	  									    	  									     
+		  									     style="font-size:12px; height:20px; width:180px !important">
+		  								</h:inputText>										
+									</p:column>
+									<p:column style="width:130px !important;">
+										<p:outputLabel value="Tipo de Intercambio:"></p:outputLabel>
+									</p:column>
+									<p:column style="width:190px !important;">
+										<p:selectOneMenu id="cboTipoIntercambio"
+											value="#{reporteIntercambioModel.tipoIntercambio}"
+											style=" width:190px !important">
+
+											<f:selectItems value="#{reporteIntercambioModel.cboTipoIntercambio}" var="elementB" 
+														itemLabel="#{elementB.PD_NombreElemento}" itemValue="#{elementB.PD_CodigoParametroDet}"
+														style=" width:100% !important" />
+
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column style="border-style:solid;border-width: 1px;">
+										<p:outputLabel value="Texto Ofrecido:" />
+									</p:column>
+
+									<p:column style="border-style:solid;border-width: 1px;">
+										<p:selectOneMenu id="cboOfrecido"
+											value="#{reporteIntercambioModel.textosOfrecido}"
+											style=" width:190px !important">
+											<f:selectItems value="#{reporteIntercambioModel.cboOfrecido}" var="textoB" 
+														   itemLabel="#{textoB.TX_Titulo}" itemValue="#{textoB.TX_CodigoTexto}"
+														   style=" width:100% !important" />
+
+										</p:selectOneMenu>
+									</p:column>									
+								</p:row>
+							</p:panelGrid>
+							
+							<p:spacer width="10" />
+							
+							<div class="posicionBotones">
+								<p:spacer width="5" />
+								<p:commandButton id="btnFiltrar" value="Filtrar"
+									action="#{reporteIntercambioController.filtrar}"
+									update=":formularioReporteRankingProveedor:pGroupGrillas" />
+								<p:spacer width="5" />
+
+								<p:commandButton id="btnLimpiar" value="Limpiar"
+								   action="#{reporteIntercambioController.limpiar}"
+									update=":formularioReporteRankingProveedor" />
+							</div>
+						</p:panel>
+						<p:spacer height="5" />
+    <f:view contentType="text/html">
+    	
+        <h1>Google Map git</h1>
+        <!-- <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:600px;height:400px" /> -->
+						<p:gmap id="gmap" center="41.381542, 2.122893" 
+											zoom="13" type="HYBRID" 
+											style="width:100%;height:400px"
+											model="#{reporteIntercambioController.mapModel}"    										    										
+    										widgetVar="map" streetView="true"/>
+		       
+    </f:view>						
+
+    														
+						<!-- <p:panel id="pnlMapa" styleClass="panelAplication"
+							header="Criterios de búsqueda">
+							<p:panelGrid id="pnlGridMapa"
+								styleClass="columnPanelGrid" style="width:750px !important;height:300px !important;">
+								<p:row>
+									<p:gmap id="gmap" center="36.890257,30.707417" 
+											zoom="13" type="HYBRID" 
+											style="width:751px;height:400px"
+    										model="#{reporteIntercambioController.mapModel}"     										
+    										widgetVar="map"/>
+								</p:row>
+							</p:panelGrid>		
+						</p:panel> -->
+						<p:spacer height="5" />
+						<h:panelGroup id="pGroupGrillas">
+							<p:dataTable id="tblReporteMonto"
+								value="#{reporteIntercambioModel.listaReporteIntercambio}"
+								var="reporteI" paginator="true" rows="10" rowIndexVar="rowInfo"
+								dynamic="true" resizableColumns="true" paginatorPosition="bottom"
+								widgetVar="tblReporte"  lazy="true"
+								scrollable="true"
+								style="border-style:solid;border-width: 0px;"
+								emptyMessage="No se encontraron registros.">
+								<f:facet name="header">
+									<h:outputText value="Tabla de Intecambios" />
+								</f:facet>
+								<p:column style="width:7%; text-align: center !important;">
+									<f:facet name="header">
+										<h:outputText value=""
+											style="width:5%; text-align: center !important;" />
+									</f:facet>
+									<p:rowToggler />
+								</p:column>
+								<p:column style="width:55%; text-align: center !important;">
+									<f:facet name="header">
+										<h:outputText value="Tipo de Intercambio" escape="false" />
+									</f:facet>
+									<h:outputText value="#{reporteI.id}" />
+								</p:column>
+								<p:column style="width:45%; text-align: center;">
+									<f:facet name="header">
+										<h:outputText value="Usuario" />
+									</f:facet>
+									<h:outputText value="#{reporteI.tipoIntercambio}" />
+								</p:column>								
+								<p:column style="width:25%; text-align: center;">
+									<f:facet name="header">
+										<h:outputText value="Texto Ofrecido" escape="false"/>
+									</f:facet>
+									<h:outputText value="#{reporteI.usuario}"/>
+								</p:column>								
+								<p:column style="width:25%; text-align: center;">
+									<f:facet name="header">
+										<h:outputText value="Texto Solicitado" escape="false"/>
+									</f:facet>
+									<h:outputText value="#{reporteI.tituloSolicitado}" />
+								</p:column>
+								<p:column style="width:25%; text-align: center;">
+									<f:facet name="header">
+										<h:outputText value="Texto Ofrecido" escape="false"/>
+									</f:facet>
+									<h:outputText value="#{reporteI.tituloOfrecido}" />
+								</p:column>	
+							</p:dataTable>
+						</h:panelGroup>
+					</p:panel>
+				</h:form>			
+				
+				<!-- preloader -->
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+				<p:dialog widgetVar="statusDialog"
+						modal="true" 
+						draggable="false" 
+						closable="true" 
+						resizable="false" 
+						showHeader="false">
+					<img src="#{request.contextPath}/resources/images/cargando.gif" />				    
+				</p:dialog>
+			</ui:define>
+		</ui:composition>
+	</h:body>	
+
+</html>
+	

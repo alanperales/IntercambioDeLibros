@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="63c8883f-9466-4d2f-bcf3-bd1144c07770">
+	<property name="ireport.zoom" value="0.9090909090909095"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="47"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaImpresion" class="java.lang.String"/>
+	<parameter name="nombreUsuario" class="java.lang.String"/>
+	<parameter name="nombrePerfil" class="java.lang.String"/>
+	<parameter name="tipoReferido" class="java.lang.String"/>
+	<parameter name="numeroDocumento" class="java.lang.String"/>
+	<parameter name="codigoCliente" class="java.lang.String"/>
+	<parameter name="nombreRazonSocial" class="java.lang.String"/>
+	<parameter name="dataSourceListaContactosCliente" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="nombreSituacion" class="java.lang.String"/>
+	<parameter name="clasificacionBuro" class="java.lang.String"/>
+	<parameter name="clasificacionSF" class="java.lang.String"/>
+	<parameter name="deudaActualSF" class="java.lang.String"/>
+	<parameter name="deudaActualBBVA" class="java.lang.String"/>
+	<parameter name="fechaDeudaSF" class="java.util.Date"/>
+	<parameter name="mensajeEmail" class="java.lang.String"/>
+	<parameter name="cuotaInicial" class="java.math.BigDecimal"/>
+	<parameter name="valorVenta" class="java.math.BigDecimal"/>
+	<parameter name="riesgoNeto" class="java.math.BigDecimal"/>
+	<parameter name="importeDesembolsado" class="java.math.BigDecimal"/>
+	<parameter name="dataSourceListaReferidos" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="dataSourceListaArchivosAdjuntos" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="nombreTabSituacion" class="java.lang.String"/>
+	<parameter name="dataSourceListaPreguntasRespondidas" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="isEnviado" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="323" y="0" width="232" height="15" forecolor="#3399FF" uuid="cc530e43-42d1-4d71-abfd-c8cb730f9f0e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sistema Web Proveedores - Leasing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="179" height="26" uuid="ac134faa-13e4-469a-a4b8-ec01c1007856"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ficha de Cliente]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="554" height="49" uuid="bc7a220b-cff6-45e4-8eeb-3cabcb90a8d4"/>
+				<subreportParameter name="tipoReferido">
+					<subreportParameterExpression><![CDATA[$P{tipoReferido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigoCliente">
+					<subreportParameterExpression><![CDATA[$P{codigoCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaContactosCliente">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaImpresion">
+					<subreportParameterExpression><![CDATA[$P{fechaImpresion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroDocumento">
+					<subreportParameterExpression><![CDATA[$P{numeroDocumento}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreRazonSocial">
+					<subreportParameterExpression><![CDATA[$P{nombreRazonSocial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombrePerfil">
+					<subreportParameterExpression><![CDATA[$P{nombrePerfil}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreUsuario">
+					<subreportParameterExpression><![CDATA[$P{nombreUsuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_Cabecera.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="64">
+			<staticText>
+				<reportElement x="0" y="0" width="128" height="20" uuid="d226d07d-3289-47bd-8e59-b31c9af3a038"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del Cliente]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="20" width="554" height="44" uuid="113738e9-201f-4ea4-b832-25fd973adfed"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoReferido">
+					<subreportParameterExpression><![CDATA[$P{tipoReferido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigoCliente">
+					<subreportParameterExpression><![CDATA[$P{codigoCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaContactosCliente">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaImpresion">
+					<subreportParameterExpression><![CDATA[$P{fechaImpresion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroDocumento">
+					<subreportParameterExpression><![CDATA[$P{numeroDocumento}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreRazonSocial">
+					<subreportParameterExpression><![CDATA[$P{nombreRazonSocial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombrePerfil">
+					<subreportParameterExpression><![CDATA[$P{nombrePerfil}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreUsuario">
+					<subreportParameterExpression><![CDATA[$P{nombreUsuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosCliente.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="61">
+			<staticText>
+				<reportElement x="0" y="0" width="142" height="20" uuid="dbb433cb-168f-468d-9796-e69c65ba2904"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Contactos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="20" width="555" height="41" uuid="792054fe-4716-4cac-912c-8d1d00e59449"/>
+				<dataSourceExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteListaContactos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="85">
+			<staticText>
+				<reportElement x="0" y="1" width="92" height="24" uuid="6de7cf2e-5eca-4eb0-9e8f-0714e3e69631"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Referidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="112" height="20" uuid="339ced2a-d7d7-441d-acff-66a93a41d11b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Referidos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="45" width="555" height="40" uuid="679fea6c-a997-4327-a1da-a0322785ad80"/>
+				<dataSourceExpression><![CDATA[$P{dataSourceListaReferidos}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteListaReferidos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="63">
+			<textField>
+				<reportElement x="0" y="0" width="272" height="20" uuid="e4944bfa-955e-4b12-b017-f854417fad4c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreSituacion}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="1" y="20" width="554" height="43" uuid="b3f25bae-1585-4723-9593-66bf1b2d9129"/>
+				<subreportParameter name="clasificacionBuro">
+					<subreportParameterExpression><![CDATA[$P{clasificacionBuro}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaContactosCliente">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cuotaInicial">
+					<subreportParameterExpression><![CDATA[$P{cuotaInicial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaImpresion">
+					<subreportParameterExpression><![CDATA[$P{fechaImpresion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroDocumento">
+					<subreportParameterExpression><![CDATA[$P{numeroDocumento}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaReferidos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaReferidos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="riesgoNeto">
+					<subreportParameterExpression><![CDATA[$P{riesgoNeto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorVenta">
+					<subreportParameterExpression><![CDATA[$P{valorVenta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreSituacion">
+					<subreportParameterExpression><![CDATA[$P{nombreSituacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualSF">
+					<subreportParameterExpression><![CDATA[$P{deudaActualSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="importeDesembolsado">
+					<subreportParameterExpression><![CDATA[$P{importeDesembolsado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoReferido">
+					<subreportParameterExpression><![CDATA[$P{tipoReferido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigoCliente">
+					<subreportParameterExpression><![CDATA[$P{codigoCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaDeudaSF">
+					<subreportParameterExpression><![CDATA[$P{fechaDeudaSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="clasificacionSF">
+					<subreportParameterExpression><![CDATA[$P{clasificacionSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreRazonSocial">
+					<subreportParameterExpression><![CDATA[$P{nombreRazonSocial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaArchivosAdjuntos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaArchivosAdjuntos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mensajeEmail">
+					<subreportParameterExpression><![CDATA[$P{mensajeEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombrePerfil">
+					<subreportParameterExpression><![CDATA[$P{nombrePerfil}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreUsuario">
+					<subreportParameterExpression><![CDATA[$P{nombreUsuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualBBVA">
+					<subreportParameterExpression><![CDATA[$P{deudaActualBBVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteMensaje.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="41">
+			<subreport>
+				<reportElement x="0" y="0" width="554" height="41" uuid="2a565348-52ec-43c8-9bd6-b9fe2296511d"/>
+				<subreportParameter name="clasificacionBuro">
+					<subreportParameterExpression><![CDATA[$P{clasificacionBuro}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaContactosCliente">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cuotaInicial">
+					<subreportParameterExpression><![CDATA[$P{cuotaInicial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaImpresion">
+					<subreportParameterExpression><![CDATA[$P{fechaImpresion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroDocumento">
+					<subreportParameterExpression><![CDATA[$P{numeroDocumento}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaReferidos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaReferidos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="riesgoNeto">
+					<subreportParameterExpression><![CDATA[$P{riesgoNeto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreSituacion">
+					<subreportParameterExpression><![CDATA[$P{nombreSituacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorVenta">
+					<subreportParameterExpression><![CDATA[$P{valorVenta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualSF">
+					<subreportParameterExpression><![CDATA[$P{deudaActualSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="importeDesembolsado">
+					<subreportParameterExpression><![CDATA[$P{importeDesembolsado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoReferido">
+					<subreportParameterExpression><![CDATA[$P{tipoReferido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigoCliente">
+					<subreportParameterExpression><![CDATA[$P{codigoCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaDeudaSF">
+					<subreportParameterExpression><![CDATA[$P{fechaDeudaSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="clasificacionSF">
+					<subreportParameterExpression><![CDATA[$P{clasificacionSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreRazonSocial">
+					<subreportParameterExpression><![CDATA[$P{nombreRazonSocial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaArchivosAdjuntos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaArchivosAdjuntos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mensajeEmail">
+					<subreportParameterExpression><![CDATA[$P{mensajeEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombrePerfil">
+					<subreportParameterExpression><![CDATA[$P{nombrePerfil}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualBBVA">
+					<subreportParameterExpression><![CDATA[$P{deudaActualBBVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreUsuario">
+					<subreportParameterExpression><![CDATA[$P{nombreUsuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteMensaje2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="61">
+			<staticText>
+				<reportElement x="0" y="1" width="141" height="20" uuid="18202f16-ae73-4d61-b857-dbe2a74051d0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista Archivos Adjuntos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="21" width="554" height="40" uuid="c91ef4d6-1237-4d79-bd6c-a0dc4e2b448c"/>
+				<dataSourceExpression><![CDATA[$P{dataSourceListaArchivosAdjuntos}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteListaArchivosAdjuntos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="63">
+			<staticText>
+				<reportElement x="0" y="0" width="155" height="20" uuid="3d990a7d-0501-41ce-85db-d9b4ad487e8e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos Generales]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="20" width="555" height="43" uuid="fabb3ef1-a292-47ac-9aba-109e22bda853"/>
+				<subreportParameter name="clasificacionBuro">
+					<subreportParameterExpression><![CDATA[$P{clasificacionBuro}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaContactosCliente">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaContactosCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cuotaInicial">
+					<subreportParameterExpression><![CDATA[$P{cuotaInicial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaImpresion">
+					<subreportParameterExpression><![CDATA[$P{fechaImpresion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroDocumento">
+					<subreportParameterExpression><![CDATA[$P{numeroDocumento}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaReferidos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaReferidos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="riesgoNeto">
+					<subreportParameterExpression><![CDATA[$P{riesgoNeto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="valorVenta">
+					<subreportParameterExpression><![CDATA[$P{valorVenta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreSituacion">
+					<subreportParameterExpression><![CDATA[$P{nombreSituacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualSF">
+					<subreportParameterExpression><![CDATA[$P{deudaActualSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="importeDesembolsado">
+					<subreportParameterExpression><![CDATA[$P{importeDesembolsado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoReferido">
+					<subreportParameterExpression><![CDATA[$P{tipoReferido}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="codigoCliente">
+					<subreportParameterExpression><![CDATA[$P{codigoCliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaDeudaSF">
+					<subreportParameterExpression><![CDATA[$P{fechaDeudaSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="clasificacionSF">
+					<subreportParameterExpression><![CDATA[$P{clasificacionSF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreRazonSocial">
+					<subreportParameterExpression><![CDATA[$P{nombreRazonSocial}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataSourceListaArchivosAdjuntos">
+					<subreportParameterExpression><![CDATA[$P{dataSourceListaArchivosAdjuntos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mensajeEmail">
+					<subreportParameterExpression><![CDATA[$P{mensajeEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombrePerfil">
+					<subreportParameterExpression><![CDATA[$P{nombrePerfil}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="deudaActualBBVA">
+					<subreportParameterExpression><![CDATA[$P{deudaActualBBVA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="nombreUsuario">
+					<subreportParameterExpression><![CDATA[$P{nombreUsuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_DatosClienteDatosGenerales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="67">
+			<textField>
+				<reportElement x="1" y="0" width="392" height="20" uuid="36a95890-47d9-4564-86bb-83731837d786">
+					<printWhenExpression><![CDATA[$P{isEnviado}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombreTabSituacion}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="1" y="20" width="553" height="41" uuid="58f2c890-4c23-4401-bbe7-c896425d3f7b">
+					<printWhenExpression><![CDATA[$P{isEnviado}.equals( true )]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$P{dataSourceListaPreguntasRespondidas}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "FichaClienteLeasingXls_SituacionEn.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

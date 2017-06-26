@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosClienteMensaje" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="737293fd-e4a4-4e06-bf4e-bb8d9e1b5226">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombreSituacion" class="java.lang.String"/>
+	<parameter name="clasificacionBuro" class="java.lang.String"/>
+	<parameter name="clasificacionSF" class="java.lang.String"/>
+	<parameter name="deudaActualSF" class="java.lang.String"/>
+	<parameter name="deudaActualBBVA" class="java.lang.String"/>
+	<parameter name="fechaDeudaSF" class="java.util.Date"/>
+	<parameter name="mensajeEmail" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="0" width="126" height="15" uuid="33e002b1-eb61-4ccb-bba9-590e042bea8b"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{clasificacionBuro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="145" height="15" uuid="b1bf05f7-81c4-4f91-bdcc-a2e16fd5499b"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clasificación Buró]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="0" width="116" height="15" uuid="b5da8646-f78c-4b21-bbc0-2f7646cb18e4"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clasificación SF]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="387" y="0" width="168" height="15" uuid="af890921-c9a3-4910-993e-52eb06068b28"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{clasificacionSF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="145" height="15" uuid="b36b3282-7adf-43ed-a53b-94fb3235dbfe"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deuda Actual BBVA]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="15" width="126" height="15" uuid="299088c2-a838-4eba-b1b0-fa77a591e18b"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{deudaActualBBVA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="15" width="116" height="15" uuid="d3ca3b0e-f3aa-444c-83bd-0fc724b0cd7d"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Deuda del SF]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="387" y="15" width="168" height="15" uuid="65458f3d-89fa-4abd-9704-a9d037399ae5"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{fechaDeudaSF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="15" uuid="fec4576b-1879-4e64-8f30-5c2daa8314d4"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

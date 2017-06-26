@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosCliente1" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cf600eee-d91d-4930-ade9-e17549f290ba">
+	<property name="ireport.zoom" value="1.6105100000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipoReferido" class="java.lang.String"/>
+	<parameter name="numeroDocumento" class="java.lang.String"/>
+	<parameter name="codigoCliente" class="java.lang.String"/>
+	<parameter name="nombreRazonSocial" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="46">
+			<staticText>
+				<reportElement x="0" y="0" width="103" height="15" uuid="753b2f55-db81-42ea-bc70-31bde5507cac"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Referido]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="103" y="0" width="150" height="15" uuid="0308fe19-e806-4558-97fc-c7dfcd04fd9f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{tipoReferido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="103" height="15" uuid="1990eb67-3f1d-4ed9-bd1f-bc7f14897b0b"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código Cliente]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="103" y="15" width="150" height="15" uuid="9cceee07-59bc-4690-8e41-aa104b012cfd"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{codigoCliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="253" y="0" width="130" height="15" uuid="da6d85a9-9701-4800-993b-1a00d50c02ed"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="0" width="172" height="15" uuid="1abf2ee6-c83e-427b-b0b9-6bb83812e765"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{numeroDocumento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="253" y="15" width="130" height="15" uuid="58e859a2-83a5-47fe-93e9-3f7e1e509043"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre/Razón Social]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="15" width="172" height="15" uuid="13e7b492-d265-4b2e-872d-b40a753e5d65"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{nombreRazonSocial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="15" uuid="afbaca1e-8725-4dde-97e3-c51d5b0187ad"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

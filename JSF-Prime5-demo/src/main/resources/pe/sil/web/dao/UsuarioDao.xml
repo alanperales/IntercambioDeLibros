@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.sil.web.dao.UsuarioDao">
+    <!-- <cache /> -->    
+	<select id="autenticarUsuario" parameterType="map" resultType="pe.sil.web.entities.Usuario" statementType="CALLABLE">
+		{CALL SIL3.USP_AUTENTICACION_USUARIO(#{username,javaType=String,jdbcType=VARCHAR,mode=IN},
+											#{password,javaType=String,jdbcType=VARCHAR,mode=IN})}
+    </select>
+</mapper>

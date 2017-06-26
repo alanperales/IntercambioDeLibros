@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" contentType="text/html">
+      
+	<ui:composition template="/resources/template/template.xhtml">
+		<ui:define name="cuerpo">
+			<f:event type="preRenderView" listener="#{principalController.init}"></f:event>
+			<p:panel id="basic">
+			<!-- header -->
+			<f:facet name="header">
+				<h:form acceptcharset="ISO-8859-1">
+					<h:panelGroup id="pgheader">
+						<h:panelGrid styleClass="columnPanelGrid">
+							<p:row>
+								<!-- titulo -->
+								<p:column style="width:600px; text-align:left !important; color:#0072c9 !important">
+									<h:outputText value="#{principalModel.titulo}" styleClass="panelTitle">
+									</h:outputText>
+								</p:column>
+								<!-- Barra de Botones -->
+								<p:column style="width:50%; text-align:right !important">
+								</p:column>
+							</p:row>
+						</h:panelGrid>						
+					</h:panelGroup>
+				</h:form>
+			</f:facet>
+			<!-- tabs -->
+			<h:panelGrid>
+				<p:row>
+					<p:column style="width:100% !important; height:470px !important; vertical-align:top;">
+					</p:column>
+				</p:row>
+			</h:panelGrid>
+			</p:panel>
+			<!-- preloader -->
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"></p:ajaxStatus>
+			<p:dialog widgetVar="statusDialog"
+					  modal="true" 
+					  draggable="false" 
+					  closable="false" 
+					  resizable="false" 
+					  showHeader="false">					  
+					  <img src="#{request.contextPath}/resources/images/cargando.gif"></img>
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+</f:view>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosClienteDatosGenerales" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="85b20f0d-fa76-4079-bb93-4847b73812d7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cuotaInicial" class="java.math.BigDecimal"/>
+	<parameter name="valorVenta" class="java.math.BigDecimal"/>
+	<parameter name="riesgoNeto" class="java.math.BigDecimal"/>
+	<parameter name="importeDesembolsado" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="57" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="55" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="35e8f077-fd85-4a1b-80bb-b172db2e6c8e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="10" width="126" height="15" uuid="588c0cf6-0c2c-4b14-af0d-c59fec427536"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuota Inicial: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="25" width="126" height="17" uuid="426e18c5-93da-4cfc-a2ba-3eb5f36e77d2"/>
+				<textFieldExpression><![CDATA[$P{cuotaInicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="139" y="10" width="119" height="15" uuid="ce5f9118-7904-42fc-8a54-39d3c161e6b6"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Venta: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="139" y="25" width="119" height="17" uuid="0f2896c0-5452-4baf-876b-2abb7e3d0ecb"/>
+				<textFieldExpression><![CDATA[$P{valorVenta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="258" y="10" width="119" height="15" uuid="86b19f5f-17af-45be-b7e1-dd6fb3a222bd"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Riesgo Neto: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="258" y="25" width="119" height="17" uuid="d88c4ca6-3bf8-4474-9e6f-68698d8b257d"/>
+				<textFieldExpression><![CDATA[$P{riesgoNeto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="377" y="10" width="155" height="15" uuid="18ddfa60-25ac-47c2-8b88-45e9734e89d2"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Importe Desembolsado: ($)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="25" width="155" height="17" uuid="cd730fa7-c1e5-4731-b586-aa4c1d47d657"/>
+				<textFieldExpression><![CDATA[$P{importeDesembolsado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

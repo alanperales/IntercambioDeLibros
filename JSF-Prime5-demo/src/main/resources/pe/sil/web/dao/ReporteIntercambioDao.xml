@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.sil.web.dao.ReporteIntercambioDao">
+    <!-- <cache /> -->    
+	<select id="obtenerResultadosIntercambio" resultType="pe.sil.web.entities.ReporteIntercambio" statementType="CALLABLE">
+		{CALL SIL3.USP_OBTENER_RESULTADO_INTERCAMBIOS(#{codigoPersona,javaType=Integer,jdbcType=INTEGER,mode=IN},
+													  #{tipoIntercambio,javaType=Integer,jdbcType=INTEGER,mode=IN},
+													  #{textoOfrecido,javaType=Integer,jdbcType=INTEGER,mode=IN},
+													  #{textoSolicitado,javaType=Integer,jdbcType=INTEGER,mode=IN})}
+    </select>
+  <select id="obtenerMovimientoIntercambio" resultType="pe.sil.web.entities.ReporteIntercambio" statementType="CALLABLE">
+    {CALL SIL3.USP_OBTENER_MOVIMIENTO_INTERCAMBIO(#{codigoMovimiento,javaType=Integer,jdbcType=INTEGER,mode=IN},#{usuario,javaType=String,jdbcType=VARCHAR,mode=IN})}
+    </select>
+</mapper>

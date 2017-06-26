@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosCliente1" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="cf600eee-d91d-4930-ade9-e17549f290ba">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipoReferido" class="java.lang.String"/>
+	<parameter name="numeroDocumento" class="java.lang.String"/>
+	<parameter name="codigoCliente" class="java.lang.String"/>
+	<parameter name="nombreRazonSocial" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="50">
+			<rectangle>
+				<reportElement mode="Transparent" x="2" y="0" width="550" height="50" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="9847605b-a2a0-4e1b-ae5a-85776687e040"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="6" width="103" height="15" uuid="753b2f55-db81-42ea-bc70-31bde5507cac"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Referido]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="6" width="152" height="15" uuid="0308fe19-e806-4558-97fc-c7dfcd04fd9f"/>
+				<textFieldExpression><![CDATA[$P{tipoReferido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="28" width="103" height="15" uuid="1990eb67-3f1d-4ed9-bd1f-bc7f14897b0b"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código Cliente]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="121" y="28" width="150" height="15" uuid="9cceee07-59bc-4690-8e41-aa104b012cfd"/>
+				<textFieldExpression><![CDATA[$P{codigoCliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="274" y="6" width="130" height="15" uuid="da6d85a9-9701-4800-993b-1a00d50c02ed"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="407" y="6" width="140" height="15" uuid="1abf2ee6-c83e-427b-b0b9-6bb83812e765"/>
+				<textFieldExpression><![CDATA[$P{numeroDocumento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="277" y="28" width="127" height="15" uuid="58e859a2-83a5-47fe-93e9-3f7e1e509043"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre/Razón Social]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="407" y="28" width="140" height="15" uuid="13e7b492-d265-4b2e-872d-b40a753e5d65"/>
+				<textFieldExpression><![CDATA[$P{nombreRazonSocial}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

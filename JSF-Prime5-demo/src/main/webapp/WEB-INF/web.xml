@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>JSF-Prime5-demo</display-name>
+
+	<welcome-file-list>
+		<welcome-file>faces/login.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>JSF-Prime5-demo</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>FacesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- permite agregar comentarios en un documento JSF (xhtml) -->
+	<context-param>
+		<!-- <param-name>facelets.SKIP_COMMENTS</param-name> -->
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- definir tema de primefaces -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>none</param-value>
+	</context-param>
+
+	<!-- cargador de contexto de Spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<!-- archivo de contexto de Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring.xml</param-value>
+	</context-param>
+
+	<!-- log4j -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>log4jExposeWebAppRoot</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<!-- spring-security -->
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>

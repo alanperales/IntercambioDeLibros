@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Sistema de Intecambio de Libros</title>
+	</h:head>	
+	<h:body>
+		<ui:composition template="/resources/template/template.xhtml">
+			<ui:define name="cuerpo">			
+				<!-- init -->
+				<!--  <f:event type="preRenderView" listener="#{agendaReunionController.init()}" />   -->
+				 <p:growl id="messagesPrin" showDetail="true" life="10000"/>				 
+				 <p:panel id="basic">
+					<f:facet name="header">
+						<h:outputText value="Agenda" style="font-size:25px;font-weight:700;" />
+					</f:facet>
+					<h:form id="formularioAgendas">
+						<p:schedule value="#{agendaReunionController.eventModel}" 
+							id="schedule" slotMinutes="30" widgetVar="schedule" 
+							draggable="false" timeZone="GMT-5" rightHeaderTemplate="false">
+
+							<p:ajax event="dateSelect"
+									listener="#{agendaReunionController.onDateSelect}"
+									update=":formularioAgenda:panelAgenda"
+									oncomplete="PF('eventDialog').show();" />
+							<p:ajax event="eventSelect"  
+									listener="#{agendaReunionController.onEventSelect}"
+									update=":formularioAgenda:panelAgenda"								
+									oncomplete="PF('eventDialog').show();" />
+							
+							<p:ajax event="eventMove" listener="#{agendaReunionController.onEventMove}" />
+							<p:ajax event="eventResize" listener="#{agendaReunionController.onEventResize}" />
+						</p:schedule>	
+					</h:form>
+				</p:panel>
+
+				<p:dialog widgetVar="eventDialog" id="eventDialog"
+						  header="Detalle de la reunión" showEffect="clip" hideEffect="clip"
+						  modal="true" width="690px" scrollable="true">
+					  
+					<h:form id="formularioAgenda"   >
+						<p:outputPanel id="panelAgenda">					 
+							<p:growl id="messages" showDetail="true" life="10000"/>
+							<div>
+								<p:panelGrid id="eventDetails" style="width:100% !important" styleClass="columnPanelGrid" widgetVar="eventDetails" >
+						
+									<p:row>
+										<p:column>
+											<h:outputLabel for="title" value="Titulo:" />
+										</p:column>
+										<p:column >
+											<p:inputText id="title" value="#{reunionBean.titulo}"  style="width:180px;" />
+										</p:column>
+										
+										
+										<p:column>
+											<h:outputLabel for="txtRuc" value="Ruc:" />
+										</p:column>
+										<p:column>
+											<p:inputText id="txtRuc" value="#{clienteBean.ruc}"
+												style="width:180px;" maxlength="11"  > 
+												 <p:ajax event="blur" listener="#{agendaReunionController.validarRUC}" 
+												 update=":formularioAgenda:messages,:formularioAgenda:datosDelcliente"/> 
+											</p:inputText>
+												
+											<p:commandLink id="btnBuscarCliente"
+												actionListener="#{agendaReunionController.obtenerContactos}"
+												update = ":formularioAgenda:messages,:formularioAgenda:datosDelcliente">
+													<p:graphicImage value="/resources/themePrime/imagenes/search.png" alt="Ver detalle" />
+											</p:commandLink>
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<h:outputLabel for="cboIdTipoEvento" value="Tipo de Evento:"  rendered="#{reunionBean.visibleTipoEvento}" />								
+										</p:column>
+										<p:column >							
+											<p:selectOneMenu id="cboIdTipoEvento"  rendered="#{reunionBean.visibleTipoEvento}"
+															 value="#{reunionBean.idTipoEvento}" style=" width:210px !important">
+													<f:selectItem itemLabel="[Seleccione]" itemValue="-1" />
+													<f:selectItems value="#{reunionBean.cboTipoEvento}" var="re" 
+																   itemLabel="#{re.descripcion}" itemValue="#{re.idCodigo}"
+																   style=" width:100% !important" />
+											</p:selectOneMenu>
+										</p:column>							
+										<p:column rowspan="4"  colspan="2">
+											 <p:outputPanel id="datosDelcliente">
+												<p:panelGrid style="-webkit-border-radius: 5px !important;-moz-border-radius: 5px !important;-ms-border-radius: 5px !important;-o-border-radius: 5px !important;	border-radius: 5px !important;	border:1px solid #ccc !important;">										
+													<p:row >
+														<p:column>
+															<p:spacer width="10" height="0"></p:spacer>
+														</p:column>	
+														<p:column  >
+														<h:outputLabel for="txtCliente" value="Cliente:"  />
+												
+														</p:column>
+														<p:column colspan="2"  >
+															<p:inputText id="txtCliente" value="#{reunionBean.nombreCliente}"
+																 style="width:170px !important"  disabled="true" />
+														</p:column>											
+													</p:row>										
+													<p:row >
+														<p:column>
+															<p:spacer width="10" height="0"></p:spacer>
+														</p:column>	
+														<p:column  >
+														<h:outputLabel for="txtContacto" value="Contacto:"  />									
+														</p:column>
+														<p:column colspan="2"  >
+															<p:inputText id="txtContacto" value="#{reunionBean.contacto}"
+																 style="width:170px !important"  disabled="true" />
+														</p:column>											
+													</p:row>
+													<p:row>	
+														<p:column>
+															<p:spacer width="10" height="0"></p:spacer>
+														</p:column>
+														<p:column>
+															<h:outputLabel for="txtTelefono" value="Teléfono:" />
+														</p:column>
+														<p:column style="width:150px !important" >
+															<p:inputText id="txtTelefono" value="#{reunionBean.telefono}"
+																style="width:150px !important"  disabled="true" />
+														</p:column>
+														<p:column style="width:30px !important" >												
+															<p:selectBooleanCheckbox id="esTelefono" widgetVar="esTelefono" value="#{reunionBean.esTelefono}">
+																<p:ajax event="change" update="formularioAgenda:esEmail" listener="#{agendaReunionController.vefiricarTipoContactoTelefono}"/>
+															</p:selectBooleanCheckbox>															 
+														</p:column>
+													</p:row>	
+													<p:row>
+														<p:column>
+																<p:spacer width="10" height="0"></p:spacer>
+														</p:column>
+														<p:column>
+															<h:outputLabel for="txtEmail" value="email" />
+														</p:column>
+														<p:column style="width:150px !important" >
+															<p:inputText id="txtEmail" value="#{reunionBean.email}" style="width:150px !important"  disabled="true" />
+														</p:column>
+														<p:column style="width:30px !important">
+																<p:selectBooleanCheckbox id="esEmail" widgetVar="esEmail"   value="#{reunionBean.esEmail}">
+																	<p:ajax event="change" update="formularioAgenda:esTelefono" listener="#{agendaReunionController.vefiricarTipoContactoEmail}" />
+																</p:selectBooleanCheckbox>
+														</p:column>
+													</p:row>
+												</p:panelGrid>
+											</p:outputPanel>
+									
+										</p:column>
+									</p:row>												
+									<p:row>
+										<p:column>
+											<h:outputLabel for="cboIdLugar" value="Lugar de reunión:" rendered="#{reunionBean.visibleLugar}" />
+										</p:column>
+										<p:column >
+											<p:selectOneMenu id="cboIdLugar" rendered="#{reunionBean.visibleLugar}"
+													value="#{reunionBean.idLugar}" style=" width:210px !important">
+													<f:selectItem itemLabel="[Seleccione]" itemValue="-1" />
+													<f:selectItems value="#{reunionBean.cboLugarReunion}" var="re" 
+																itemLabel="#{re.descripcion}" itemValue="#{re.idCodigo}"
+																style=" width:100% !important" />
+													<f:selectItem itemLabel="Casa del cliente" itemValue="CC"/>
+													<f:selectItem itemLabel="Oficina del proveedor" itemValue="OP"  />
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+									<p:row>
+										<p:column>
+											<h:outputLabel value="Fecha Inicial" />
+										</p:column>
+										<p:column >
+											<p:inputMask id="from" 
+												value="#{reunionBean.fechaInicio}"
+												mask="99/99/9999 99:99" style="width:180px;">
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-5" />
+												
+												<p:ajax event="blur" 
+													listener="#{agendaReunionController.verificarFechas}"
+													update="addButton">
+												</p:ajax>
+												
+											</p:inputMask>
+										</p:column>
+									</p:row> 
+									<p:row>
+										<p:column>
+											<h:outputLabel value="Fecha Final:" />
+										</p:column>
+										<p:column >	
+											<p:inputMask id="final" value="#{reunionBean.fechaFin}" 
+												mask="99/99/9999 99:99" style="width:180px;">
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-5" />
+												<p:ajax event="blur"
+													listener="#{agendaReunionController.verificarFechas}"
+													update="addButton,:formularioAgenda:messages">
+												</p:ajax>
+											</p:inputMask>
+										</p:column>
+									</p:row>
+									<p:row>							
+									</p:row>
+									<p:row>
+										<p:column>
+											<h:outputLabel value="Descripción:" />
+										</p:column>
+										<p:column >
+											<p:inputTextarea rows="4" cols="25" value="#{reunionBean.descripcion}" style="height:50px !important;width:180px;"/>
+										</p:column>
+										
+										<p:column>
+											<h:outputLabel value="Acuerdos:" />
+										</p:column>
+										<p:column >
+											<p:inputTextarea rows="4" cols="25" value="#{reunionBean.acuerdos}" style="height:50px !important;width:180px;"/>
+										</p:column>
+									</p:row> 
+									<p:row> 
+									</p:row> 						
+								</p:panelGrid>
+								<div style="clear: both;"></div>
+							</div> 					
+							<p:panelGrid >
+								<iframe src="#{requerimientoLeasingBean.urlUploadFile}"
+										width="100%" 
+										height="36px" 
+										style="border-width:0px; overflow:hidden;" 
+										class="iframeStyle"
+										onload="actualizarArchivo2();" 
+										scrolling="no"/>
+										
+								<p:commandButton id="prueba" 
+												ajax="true"
+												style="visibility:hidden; width:0px; height:0px;"
+												update="formularioAgenda:tblArchivos" />
+							</p:panelGrid>
+						
+							<div style="width:100%;display: block;">
+								<p:panelGrid style="width:100% !important" styleClass="columnPanelGrid">										 
+									<p:row>											
+										<p:column>												
+											<p:dataTable id="tblArchivos"
+														value="#{reunionBean.listaAdjuntos}"
+														var="archivo" 
+														paginator="false" 
+														editable="true"
+														editMode="cell" 
+														scrollable="true" 
+														rowIndexVar="rowInfo"
+														lazy="true" 
+														dynamic="true" 
+														scrollHeight="315"
+														resizableColumns="true" 
+														widgetVar="tblDetalle"
+														style="border-style:solid; border-width: 0px;"
+														rowKey="archivo.idAdjunto" 
+														emptyMessage="No se encontraron registros.">
+												
+												<f:facet name="header">
+													<h:outputText value="Lista archivos adjuntos" />
+												</f:facet>
+
+												<p:column style="width:8%; text-align:center; display:none;" headerText="idAdjunto">
+													<h:outputText value="#{archivo.idAdjunto}" />
+												</p:column>
+												
+												<p:column style="width:8%; text-align: center;" headerText="N°">
+													<h:outputText value="#{archivo.numero}" />
+												</p:column>
+
+												<p:column style="width:50%; text-align:center;" headerText="Nombre del archivo">
+													<h:outputText value="#{archivo.nombreArchivo}" />
+												</p:column>
+
+												<p:column headerText="Acción" style="width:8%; text-align:center">														
+													<p:spacer width="3" height="0" />															
+													<p:panelGrid style="text-align:center">															
+														<p:row>																
+															<p:column rendered="#{requerimientoLeasingBean.editable}" style="text-align:center !important;">
+																<p:commandLink ajax="true" 
+																				id="btnEliminarAdjunto"
+																				update="formularioAgenda:tblArchivos"
+																				action="#{agendaReunionController.eliminarAdjunto}">
+
+																	<h:graphicImage url="/resources/themePrime/imagenes/icon_delete.png" 
+																					alt="Eliminar Adjunto" />
+
+																	<f:setPropertyActionListener target="#{requerimientoLeasingBean.codigoAdjuntoSeleccionado}"
+																								value="#{archivo.numero}" />
+																</p:commandLink>																		
+																<p:tooltip value="Eliminar adjunto" 
+																			for="btnEliminarAdjunto" 
+																			showEffect="fade" 
+																			hideEffect="fade" />
+
+															</p:column>
+															
+															<p:column style="text-align:center !important;"> 
+															
+																<p:commandLink ajax="false"
+																				onclick="PrimeFaces.monitorDownload(start, stop);" 
+																				actionListener="#{agendaReunionController.generarArchivo}"
+																				id="botonDescargarAdjunto">
+
+																	<h:graphicImage url="/resources/themePrime/imagenes/icon-descargar.png" 
+																					alt="Descargar Adjunto" />
+																					
+																	<f:param name="numeroAdjunto" value="#{archivo.numero}" />
+																	
+																	<p:fileDownload value="#{requerimientoLeasingBean.fileDownload}" />
+
+																</p:commandLink>
+																
+																<p:tooltip value="Descargar adjunto"
+																			for="botonDescargarAdjunto" 
+																			showEffect="fade"
+																			hideEffect="fade" />
+
+															</p:column>																	
+														</p:row>																
+													</p:panelGrid>															
+												</p:column>
+												
+											</p:dataTable>
+											
+										</p:column>
+										
+									</p:row>											
+								</p:panelGrid>
+								<div style="clear: both;"></div>
+							</div>
+							<p:panelGrid>
+								<p:row>
+									<p:column style="width:700px; text-align:right !important;">
+										<p:commandButton id="closeButton" value="Cancelar" type="reset" action="#{agendaReunionController.limpiarAgenda}"
+											onclick="PF('eventDialog').hide();"  update=":formularioAgenda,:messagesPrin,
+																						 :formularioAgendas:schedule"/>
+										<p:commandButton id="addButton" widgetVar="addButton" value="Guardar"  disabled="#{desactivarBotonGuardar}"
+											action="#{agendaReunionController.guardarReunionPrincipal}" update=":formularioAgenda,:messagesPrin,
+																													:formularioAgendas:schedule"
+											/>
+
+									</p:column>	
+								</p:row>
+							</p:panelGrid> 
+						</p:outputPanel>
+				  	</h:form>
+				</p:dialog>
+				<script type="text/javascript">
+					function start() {
+						PF('statusDialog').show();
+					}
+					 
+					function stop() {
+						PF('statusDialog').hide();
+					}
+				</script>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</html>
+			
+			

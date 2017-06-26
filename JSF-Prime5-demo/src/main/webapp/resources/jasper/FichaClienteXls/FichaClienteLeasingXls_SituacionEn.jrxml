@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_SituacionEn" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4118b6c5-0fd3-49cb-bb95-9b6393c5d290">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="descrPregunta" class="java.lang.String"/>
+	<field name="idValor" class="java.lang.String"/>
+	<field name="observacion" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="140" y="2" width="227" height="20" forecolor="#003399" uuid="3b0cf34b-48d1-4548-a768-38635a84be70"/>
+				<box rightPadding="5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descrPregunta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="367" y="22" width="188" height="20" uuid="2791f67b-0f96-437c-af9b-58937e36af6c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="140" y="22" width="227" height="20" uuid="31c4ae80-9b30-46e0-8d27-f6c6f0e3ee43"/>
+				<textFieldExpression><![CDATA[$F{idValor}.equals( "1" ) ? "Si" : ($F{idValor}.equals( "0" ) ? "No" : "")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="367" y="2" width="188" height="20" forecolor="#003399" uuid="9bcc0f43-44c5-4425-8a1b-d4b48e025c9e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observación del Banco: ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="2" width="140" height="20" uuid="03a1e719-7f57-4271-a471-b5f9508ce6a3"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

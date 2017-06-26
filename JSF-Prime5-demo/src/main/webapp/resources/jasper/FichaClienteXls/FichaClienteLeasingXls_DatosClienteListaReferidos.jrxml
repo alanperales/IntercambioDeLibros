@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosClienteListaReferidos" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2c10b8b2-34da-4434-a46e-2c3b83909b96">
+	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="codigoFormateado" class="java.lang.String"/>
+	<field name="fechaAltaString" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="nombreVendedor" class="java.lang.String"/>
+	<field name="importeTotal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="0" width="83" height="20" uuid="ac54adca-1bd7-4012-965c-66020eb0f204"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="0" width="98" height="20" uuid="ee36c4de-7b01-4121-823a-51ee86fee7d3"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Alta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="120" height="20" uuid="1ba9dbd5-5e9f-4453-8a7c-10d0acdc57d1"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="146" height="20" uuid="3faadeb5-e59d-44c6-a702-dcffeb2e92e3"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vendedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="0" width="109" height="20" uuid="fb4fe498-85be-4cd8-a15b-ed80f9513dea"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Exp. en USD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="82" height="20" uuid="52050ce9-8ec5-48ba-96a6-618bd0725735"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{codigoFormateado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="0" width="98" height="20" uuid="4de19302-b64b-4fad-9359-5ceac2428113"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{fechaAltaString}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="120" height="20" uuid="fd4d9d9b-1905-4c07-b710-4f295a7ac1d5"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="146" height="20" uuid="969baad4-e96f-4162-90c6-25df5bb9ea88"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nombreVendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="109" height="20" uuid="1da475ed-a019-439f-82b2-62edfba3fe0d"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{importeTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="5d33eb78-0ff9-4886-ab0d-6e7c49c4180f"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaClienteLeasingPdf_DatosCliente" pageWidth="550" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="550" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1f862a9a-4080-4133-9086-d7c5cb004cf3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaImpresion" class="java.lang.String"/>
+	<parameter name="nombreUsuario" class="java.lang.String"/>
+	<parameter name="nombrePerfil" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="76">
+			<rectangle>
+				<reportElement mode="Transparent" x="3" y="3" width="547" height="68" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e257366e-830a-4ffb-9882-c6894517391e"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="172" y="9" width="309" height="16" uuid="6648cb74-4082-477e-b383-3d24028fad54"/>
+				<textFieldExpression><![CDATA[$P{nombreUsuario}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="172" y="27" width="308" height="16" uuid="a3ce3491-5fb6-431b-8def-5c5d304a8ddd"/>
+				<textFieldExpression><![CDATA[$P{nombrePerfil}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="10" width="145" height="15" uuid="c16d1838-d0bb-49e8-a404-8c56fb9df4bb"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="42" width="145" height="15" uuid="382db4e1-c753-4996-b36f-6d26f88dfdc5"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Impresión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="26" width="145" height="15" uuid="f213eb81-af3e-4bf4-97c1-fc20c9b39979"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="172" y="44" width="308" height="15" uuid="0e1de7b9-c2bb-46ee-820d-5cfbddd76b08"/>
+				<textFieldExpression><![CDATA[$P{fechaImpresion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>
