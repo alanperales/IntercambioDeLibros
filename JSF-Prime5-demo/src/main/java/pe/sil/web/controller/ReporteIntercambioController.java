@@ -33,7 +33,7 @@ import pe.sil.web.util.Mail;
 @Scope("request")
 public class ReporteIntercambioController {
 
-	private static final Logger log = Logger.getLogger(LoginController.class);
+	private static final Logger log = Logger.getLogger(ReporteIntercambioController.class);
 
 	private static final Integer TIPO_INTERCAMBIO = 4; 
 
@@ -161,12 +161,12 @@ public class ReporteIntercambioController {
 
 	public void showVerForm(ReporteIntercambio rep){
 		log.info("showVerForm: ");
-		log.info("showVerForm: " + rep.getIdSolicitado());
+		log.info("showVerForm: " + rep.getIdOfertado());
 		reporteIntercambioModel.setReporteIntercambio(rep);
 
 		try{
-			Texto texto = textoService.obtenerTextoSolicitado(Integer.parseInt(rep.getIdSolicitado()));
-			log.info("showVerForm: texto " + rep.getIdSolicitado());
+			Texto texto = textoService.obtenerTextoSolicitado(Integer.parseInt(rep.getIdOfertado()));
+			log.info("showVerForm: texto " + rep.getIdOfertado());
 			if(texto !=null){
 				textoModel.setAT_CodigoAutor(texto.getAT_CodigoAutor());
 				textoModel.setAT_NombreAutor(texto.getAT_NombreAutor());
@@ -183,6 +183,9 @@ public class ReporteIntercambioController {
 				textoModel.setPD_NombreTipTapa(texto.getPD_NombreTipTapa());
 				textoModel.setId(rep.getId());
 				textoModel.setIdOfertados(rep.getIdOfertados());
+				if (rep.getRutaAdjuntos()!=null && !"".equals(rep.getRutaAdjuntos())) {
+					textoModel.setRutaAdjuntos(rep.getRutaAdjuntos().split(","));
+				}
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -194,7 +197,7 @@ public class ReporteIntercambioController {
 
 		// Se envia un correo al usuario que ofreció el texto con información
 		// de usuario que solicitó el intercambio
-		String mensaje = formatearMsg1(textoModel.getId(), reporteIntercambioModel.getReporteIntercambio().getIdSolicitado(), loginModel.getUsuario(), reporteIntercambioModel.getReporteIntercambio().getTituloO(), reporteIntercambioModel.getReporteIntercambio().getTituloS());
+		String mensaje = formatearMsg1(textoModel.getId(), textoModel.getIdOfertados(), reporteIntercambioModel.getReporteIntercambio().getIdSolicitado(), reporteIntercambioModel.getReporteIntercambio().getIdOfertado(), loginModel.getUsuario(), reporteIntercambioModel.getReporteIntercambio().getTituloO(), reporteIntercambioModel.getReporteIntercambio().getTituloS());
 		enviarEmail(reporteIntercambioModel.getReporteIntercambio().getEmail(), mensaje);
 	}
 
@@ -213,10 +216,10 @@ public class ReporteIntercambioController {
 		email.sendMail("fanny.salinasf@gmail.com", "", correo, null, "Notificacion Intercambio de Libros", mensaje, null, null, true, false);
 	}
 
-	private String formatearMsg1(String IdMovimiento, String IdTexto, String usuarioS, String tituloS, String tituloO){
+	private String formatearMsg1(String IdSolicitado, String IdOfertados, String IdTextoS, String IdTextoO, String usuarioS, String tituloS, String tituloO){
 		request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
-		String linkFormulario = "http://" + request.getHeader("Host") + request.getContextPath() + "/intercambio-confirmacion.xhtml?s=" + IdMovimiento + "&t=" + IdTexto + "&us=" + usuarioS;
+		String linkFormulario = "http://" + request.getHeader("Host") + request.getContextPath() + "/intercambio-confirmacion.xhtml?s=" + IdSolicitado + "&o=" + IdOfertados + "&ts=" + IdTextoS + "&to=" + IdTextoO + "&us=" + usuarioS;
 		String linkPerfilS = "http://" + request.getHeader("Host") + request.getContextPath() + "/perfil.xhtml?u=" + usuarioS;
 
 		StringBuilder sb = new StringBuilder();

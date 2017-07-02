@@ -28,6 +28,21 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>SpringServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SpringServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
 	<!-- permite agregar comentarios en un documento JSF (xhtml) -->
 	<context-param>
 		<!-- <param-name>facelets.SKIP_COMMENTS</param-name> -->

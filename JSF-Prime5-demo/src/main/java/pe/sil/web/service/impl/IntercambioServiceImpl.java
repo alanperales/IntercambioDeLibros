@@ -48,7 +48,7 @@ public class IntercambioServiceImpl implements IntercambioService{
 	}
 
 	@Override
-	public ReporteIntercambio obtenerMovimientoIntercambio(Integer codigoMovimiento, String usuario) {
-		return reporteIntercambioDao.obtenerMovimientoIntercambio(codigoMovimiento, usuario);
+	public ReporteIntercambio obtenerMovimientoIntercambio(String codigoPersonaS, String codigoPersonaO, int codigoOfertados) {
+		return reporteIntercambioDao.obtenerMovimientoIntercambio(codigoPersonaS, codigoPersonaO, codigoOfertados);
 	}
 }

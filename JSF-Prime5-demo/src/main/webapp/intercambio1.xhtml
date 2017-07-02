@@ -152,15 +152,15 @@
 								</p:column>
 								<p:column style="width:25%; text-align: center;">
 									<f:facet name="header">
-										<h:outputText value="Texto Ofrecido" escape="false"/>
+										<h:outputText value="Yo ofrezco" escape="false"/>
 									</f:facet>
-									<h:outputText value="#{reporteI.tituloO}"/>
+									<h:outputText value="#{reporteI.tituloS}" />
 								</p:column>
 								<p:column style="width:25%; text-align: center;">
 									<f:facet name="header">
-										<h:outputText value="Texto Solicitado" escape="false"/>
+										<h:outputText value="Me ofrecen" escape="false"/>
 									</f:facet>
-									<h:outputText value="#{reporteI.tituloS}" />
+									<h:outputText value="#{reporteI.tituloO}"/>
 								</p:column>
 								<p:column style="width:25%; text-align: center;">
 									<f:facet name="header">
@@ -187,6 +187,18 @@
 							  dynamic="true">
 						<ui:include src="/intercambio-confirmacion-dialog.xhtml"/>
 					</p:dialog>
+
+					<p:dialog widgetVar="dialogVerUsuario"
+							  id="dialogVerUsuario"
+							  modal="true"
+							  draggable="false"
+							  closable="true"
+							  resizable="false"
+							  showHeader="false"
+							  dynamic="true">
+						<ui:include src="/perfil-dialog.xhtml"/>
+					</p:dialog>
+
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 						<p:commandButton value="Aceptar" type="button" styleClass="ui-confirmdialog-yes"/>
 						<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>

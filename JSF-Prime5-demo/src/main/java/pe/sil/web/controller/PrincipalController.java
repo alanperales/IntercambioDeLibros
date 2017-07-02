@@ -18,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import pe.sil.web.entities.Usuario;
 import pe.sil.web.model.LoginModel;
 import pe.sil.web.model.PrincipalModel;
-import pe.sil.web.model.ReporteIntercambioModel;
 //import org.apache.log4j.Logger;
 import pe.sil.web.service.IntercambioService;
 
@@ -34,9 +33,6 @@ public class PrincipalController implements Serializable {
 
 	@Autowired
 	PrincipalModel principalModel;
-
-	@Autowired
-	ReporteIntercambioModel reporteIntercambioModel;
 
 	@Autowired
 	IntercambioService intercambioService;

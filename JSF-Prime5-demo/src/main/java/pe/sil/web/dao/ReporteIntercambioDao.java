@@ -13,6 +13,7 @@ public interface ReporteIntercambioDao extends SilDao<ReporteIntercambio> {
 														  @Param("textoOfrecido") Integer textoOfrecido,
 														  @Param("textoSolicitado") Integer textoSolicitado);
 
-	ReporteIntercambio obtenerMovimientoIntercambio(@Param("codigoMovimiento") Integer codigoMovimiento,
-													@Param("usuario") String usuario);
+	ReporteIntercambio obtenerMovimientoIntercambio(@Param("codigoPersonaS") String codigoPersonaS,
+													@Param("codigoPersonaO") String codigoPersonaO,
+													@Param("codigoOfertados") int codigoOfertados);
 }

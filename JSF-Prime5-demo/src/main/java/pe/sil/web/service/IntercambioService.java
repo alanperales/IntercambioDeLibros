@@ -11,5 +11,5 @@ public interface IntercambioService extends Serializable {
 	List<Intercambio> obtenerSolicitudesPorSolicitante(Integer codigoPersona);
 	List<Intercambio> obtenerOfertasPorOfertante(Integer codigoPersona);
 	void intercambiar(Integer idOfertado,Integer idSolicitado);
-	ReporteIntercambio obtenerMovimientoIntercambio(Integer codigoMovimiento, String usuario);
+	ReporteIntercambio obtenerMovimientoIntercambio(String codigoPersonaS, String codigoPersonaO, int codigoOfertados);
 }

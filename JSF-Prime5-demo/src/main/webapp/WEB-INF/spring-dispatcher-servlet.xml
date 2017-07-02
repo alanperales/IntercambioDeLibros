@@ -9,7 +9,9 @@
 	<mvc:annotation-driven />
 	<mvc:resources  location="/files/" mapping="/files/**"/>
 	<mvc:resources  location="/" mapping="/**"/>
-	
+
+	<mvc:view-controller path="/" view-name="/principal.xhtml" />
+
 	<!-- escanear package de beans que usaran anotaciones -->
 	<context:component-scan base-package="pe.sil.web"/>
 	<mvc:view-controller path="/" view-name="/principal.xhtml" />

@@ -17,9 +17,21 @@
 				<f:event type="preRenderView" listener="#{principalController.init}"/>
 				<f:event type="preRenderView" listener="#{externoController.init}"/>
 				<h:form id="formularioIntercambioConfirmacion">
-					<p:panel id="panelIntercamcioConfirmacion" widgetVar="panelIntercamcioConfirmacion" style="text-align: center;">
+					<p:panel id="panelIntercambioConfirmacion" widgetVar="panelIntercambioConfirmacion" style="text-align: center;">
 						<ui:include src="/intercambio-confirmacion-dialog.xhtml"/>
 					</p:panel>
+
+					<p:dialog widgetVar="dialogVerUsuario"
+							  id="dialogVerUsuario"
+							  modal="true"
+							  draggable="false"
+							  closable="true"
+							  resizable="false"
+							  showHeader="false"
+							  dynamic="true">
+						<ui:include src="/perfil-dialog.xhtml"/>
+					</p:dialog>
+
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 						<p:commandButton value="Aceptar" type="button" styleClass="ui-confirmdialog-yes"/>
 						<p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no"/>

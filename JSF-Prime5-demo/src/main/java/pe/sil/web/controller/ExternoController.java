@@ -29,73 +29,83 @@ public class ExternoController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(LoginController.class);
-
-	@Autowired
-	IntercambioService intercambioService;
+	private static final Logger log = Logger.getLogger(ExternoController.class);
 
 	@Autowired
 	TextoService textoService;
 
 	@Autowired
+	IntercambioService intercambioService;
+
+	@Autowired
 	LoginModel loginModel;
-
-	@Autowired
-	ReporteIntercambioModel reporteIntercambioModel;
-
-	@Autowired
-	TextoModel textoModel;
 
 	HttpServletRequest request;
 
+	ReporteIntercambioModel reporteIntercambioModel;
+
+	TextoModel textoModel;
+
+	boolean esRetorno = false;
+
 	public void init() throws IOException, ServletException {
 		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
 
 		request = (HttpServletRequest) context.getExternalContext().getRequest();
 
-		log.info("init : codigoMovimiento " + request.getParameter("s"));
-		log.info("init : codigoTexto " + request.getParameter("t"));
+		log.info("init : codigoMovSolicitado " + request.getParameter("s"));
+		log.info("init : codigoMovOfertado " + request.getParameter("o"));
+		log.info("init : codigoTextoS " + request.getParameter("ts"));
+		log.info("init : codigoTextoO " + request.getParameter("to"));
+		log.info("init : codigoPersonaS " + request.getParameter("us"));
+		log.info("init : reporteIntercambioModel " + context.getExternalContext().getSessionMap().get("reporteIntercambioModel"));
 
-		boolean parametrosCompoletos = request.getParameter("s") != null && request.getParameter("t") != null;
-		boolean esRetorno = request.getSession().getAttribute("esRetorno") != null && Boolean.parseBoolean(request.getSession().getAttribute("esRetorno").toString());
+		boolean parametrosCompletos = request.getParameter("s") != null && request.getParameter("o") != null && request.getParameter("ts") != null && request.getParameter("to") != null && request.getParameter("us") != null;
+		boolean reporteEncontrado = context.getExternalContext().getSessionMap().get("reporteIntercambioModel") != null;
 
-
-		if (parametrosCompoletos && !esRetorno) {
+		if (parametrosCompletos) {
 			log.info("parametros recibidos");
 			// Preparando datos
-			String codigoMovimiento = request.getParameter("s");
-			String codigoTexto = request.getParameter("t");
+			String codigoPersonaS = request.getParameter("us");
+			int codigoOfertados = Integer.parseInt(request.getParameter("o"));
 			// Recuperar datos del intercambio. Luego, redireccionar a una página sin los parámetros
-			boolean existeTexto = cargarConfirmarIntercambio(codigoMovimiento, codigoTexto);
+			boolean existeTexto = cargarConfirmarIntercambio(codigoPersonaS, codigoOfertados);
+			log.info("Intercambio encontrado : " + existeTexto);
 			if (existeTexto) {
-				request.getSession().setAttribute("esRetorno", true);
-				context.getExternalContext().redirect("intercambio-confirmacion.xhtml");
+				context.getExternalContext().getSessionMap().put("reporteIntercambioModel", reporteIntercambioModel);
+				context.getExternalContext().getSessionMap().put("textoModel", textoModel);
+				context.getExternalContext().getSessionMap().put("usuarioSolicitante", codigoPersonaS);
+				context.getExternalContext().getSessionMap().put("esRetorno", true);
+				context.getApplication().getNavigationHandler().handleNavigation(context, null, "/intercambio-confirmacion.xhtml?faces-redirect=true");
 				return;
 			}
 		}
+
+		// Si viene de un retroceso, mostrar mensaje
 		// Si el usuario no tiene acceso a la solicitud de intercambio o esta no corresponde al usuario, mostrar mensaje
 		// Si los parámetros no están completos, mostrar mensaje
-		if (!esRetorno) {
-			reporteIntercambioModel = null;
-			textoModel = null;
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usted no tiene acceso a la solicitud de intercambio o ya no está disponible."));
-			context.getExternalContext().redirect("mensaje.xhtml");
+		if (!reporteEncontrado) {
+			limpiarSesion();
+			context.getExternalContext().redirect("principal.xhtml");
 			return;
 		}
 		// Nada hacer y permitir que continue el cualquier otro caso
 	}
 
-	private boolean cargarConfirmarIntercambio (String codigoMovimiento, String codigoTexto) {
-		log.info("showConfirmarIntercambio: movimiento " + codigoMovimiento);
-		log.info("showConfirmarIntercambio: texto " + codigoTexto);
-		log.info("showConfirmarIntercambio: usuario " + loginModel.getUsuario());
+	private boolean cargarConfirmarIntercambio (String codigoPersonaS, int codigoOfertados) {
+		log.info("cargarConfirmarIntercambio : codigoPersonaS " + codigoPersonaS);
+		log.info("cargarConfirmarIntercambio : codigoPersonaO " + loginModel.getUsuario());
+		log.info("cargarConfirmarIntercambio : codigoOfertados " + codigoOfertados);
 
 		try{
-			ReporteIntercambio rep = intercambioService.obtenerMovimientoIntercambio(Integer.parseInt(codigoMovimiento), loginModel.getUsuario());
+			reporteIntercambioModel = new ReporteIntercambioModel();
+			ReporteIntercambio rep = intercambioService.obtenerMovimientoIntercambio(codigoPersonaS, loginModel.getUsuario(), codigoOfertados);
 			reporteIntercambioModel.setReporteIntercambio(rep);
 
-			Texto texto = textoService.obtenerTextoSolicitado(Integer.parseInt(codigoTexto));
+			Texto texto = textoService.obtenerTextoSolicitado(Integer.parseInt(rep.getIdOfertado()));
 			if(texto !=null){
+				textoModel = new TextoModel();
 				textoModel.setAT_CodigoAutor(texto.getAT_CodigoAutor());
 				textoModel.setAT_NombreAutor(texto.getAT_NombreAutor());
 				textoModel.setED_CodigoEditorial(texto.getED_CodigoEditorial());
@@ -111,13 +121,17 @@ public class ExternoController implements Serializable {
 				textoModel.setPD_NombreTipTapa(texto.getPD_NombreTipTapa());
 				textoModel.setId(rep.getId());
 				textoModel.setIdOfertados(rep.getIdOfertados());
+				if (rep.getRutaAdjuntos()!=null && !"".equals(rep.getRutaAdjuntos())) {
+					textoModel.setRutaAdjuntos(rep.getRutaAdjuntos().split(","));
+				}
 				return true;
 			} else {
 				return false;
 			}
 		} catch(Exception ex){
-			return false;
 		}
+
+		return false;
 	}
 
 	public String intercambiar() {
@@ -148,15 +162,27 @@ public class ExternoController implements Serializable {
 		mensaje = formatearMsgConfirmante(loginModel.getUsuario(), rep.getUS_usuario(), rep.getEmail());
 		enviarEmail("", mensaje);
 
+		limpiarSesion();
+
 		// Enviar mensaje
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje: ", "Usted confirmó el intercambio del texto \"" + textoModel.getTX_Titulo() + "\"."));
-		return "mensaje.xhtml";
+		return "intercambio1.xhtml";
 	}
 
 	public String cancelarIntercambio() {
 		log.info("cancelarIntercambio: ");
+		limpiarSesion();
+		// Enviar mensaje
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia: ", "Usted canceló el intercambio del texto \"" + textoModel.getTX_Titulo() + "\"."));
-		return "mensaje.xhtml";
+		return "intercambio1.xhtml";
+	}
+
+	private void limpiarSesion() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().remove("reporteIntercambioModel");
+		context.getExternalContext().getSessionMap().remove("textoModel");
+		context.getExternalContext().getSessionMap().remove("usuarioSolicitante");
+		context.getExternalContext().getSessionMap().remove("esRetorno");
 	}
 
 	private void enviarEmail(String correo, String mensaje){
@@ -177,7 +203,7 @@ public class ExternoController implements Serializable {
 	private String formatearMsgSolicitante(String usuario, String usuarioO, String emailO){
 		request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
-		String linkPerfilO = "http://" + request.getHeader("Host") + request.getRequestURL() + "/con-perfil?u=" + usuarioO;
+		String linkPerfilO = "http://" + request.getRequestURL() + "/con-perfil?u=" + usuarioO;
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<html>");
@@ -212,7 +238,7 @@ public class ExternoController implements Serializable {
 	private String formatearMsgConfirmante(String usuario, String usuarioS, String emailS){
 		request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
-		String linkPerfilS = "http://" + request.getHeader("Host") + request.getRequestURL() + "/con-perfil?u=" + usuarioS;
+		String linkPerfilS = "http://" + request.getRequestURL() + "/con-perfil?u=" + usuarioS;
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<html>");

@@ -7,8 +7,10 @@
 													  #{tipoIntercambio,javaType=Integer,jdbcType=INTEGER,mode=IN},
 													  #{textoOfrecido,javaType=Integer,jdbcType=INTEGER,mode=IN},
 													  #{textoSolicitado,javaType=Integer,jdbcType=INTEGER,mode=IN})}
-    </select>
-  <select id="obtenerMovimientoIntercambio" resultType="pe.sil.web.entities.ReporteIntercambio" statementType="CALLABLE">
-    {CALL SIL3.USP_OBTENER_MOVIMIENTO_INTERCAMBIO(#{codigoMovimiento,javaType=Integer,jdbcType=INTEGER,mode=IN},#{usuario,javaType=String,jdbcType=VARCHAR,mode=IN})}
-    </select>
+	</select>
+	<select id="obtenerMovimientoIntercambio" resultType="pe.sil.web.entities.ReporteIntercambio" statementType="CALLABLE">
+	{CALL SIL3.USP_OBTENER_MOVIMIENTO_INTERCAMBIO(#{codigoPersonaS,javaType=String,jdbcType=VARCHAR,mode=IN},
+													#{codigoPersonaO,javaType=String,jdbcType=VARCHAR,mode=IN},
+													#{codigoOfertados,javaType=Integer,jdbcType=INTEGER,mode=IN})}
+	</select>
 </mapper>

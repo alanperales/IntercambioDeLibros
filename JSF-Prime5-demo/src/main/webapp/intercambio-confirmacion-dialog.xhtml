@@ -5,82 +5,117 @@
 	  xmlns:p="http://primefaces.org/ui">
 	 <p:panelGrid styleClass="columnPanelGrid" style="border-style:solid; border-width:1px; display: inline-table;">
 		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center;" colspan="4">
+			<p:column style="text-align:center;" colspan="3">
 				<h:outputText style="font-weight: bold; display: block; font-size: 36px; margin: 1px; padding: 2px; width: 100%;" value="#{textoModel.TX_Titulo}"/>
 			</p:column>
 		</p:row>
 		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center;" colspan="3">
+			<p:column style="text-align:center;" colspan="3">
 				<h:outputText style="font-weight: bold; display: block; font-size: 28px; margin: 1px; padding: 2px; width: 100%;" value="#{textoModel.AT_NombreAutor}"/>
 			</p:column>
-			<p:column style="text-align: right; vertical-align: bottom;">
-				<h:outputText style="font-weight: bold;" value="#{reporteIntercambioModel.reporteIntercambio.US_usuario}"/>
+		</p:row>
+		<p:row rendered="#{usuarioSolicitante == null}">
+			<p:column style="text-align: right; border-bottom: 1px solid #D3D3D3 !important;" colspan="3">
+				<p:commandLink id="btnVerUsuarioO"
+					process="@this"
+					action="#{perfilController.showUsuarioForm(reporteIntercambioModel.reporteIntercambio.US_usuario)}"
+					oncomplete="PF('dialogVerUsuario').show();"
+					update="dialogVerUsuario">
+					<h:outputText style="vertical-align: middle;" value="Ofertante: #{reporteIntercambioModel.reporteIntercambio.US_usuario} "/><p:graphicImage style="vertical-align: middle;" value="/resources/themePrime/imagenes/icon-busqueda.png" alt="Editar" width="16" height="16" />
+				</p:commandLink>
+			</p:column>
+		</p:row>
+		<p:row rendered="#{usuarioSolicitante != null}">
+			<p:column style="text-align: right; border-bottom: 1px solid #D3D3D3 !important;" colspan="3">
+				<p:commandLink id="btnVerUsuarioS"
+					process="@this"
+					action="#{perfilController.showUsuarioForm(usuarioSolicitante)}"
+					oncomplete="PF('dialogVerUsuario').show();"
+					update="dialogVerUsuario">
+					<h:outputText style="vertical-align: middle;" value="Solicitante: #{usuarioSolicitante} "/><p:graphicImage style="vertical-align: middle;" value="/resources/themePrime/imagenes/icon-busqueda.png" alt="Editar" width="16" height="16" />
+				</p:commandLink>
 			</p:column>
 		</p:row>
 		<p:row>
-			<p:column style="width: 150px;" cellpadding="0" rowspan="7">
-				<span> </span>
+			<p:column style="width: 150px;" cellpadding="0">
+				<h:panelGroup rendered="#{textoModel.rutaAdjuntos != null}" styleClass="sesion" style="width: 300px; height: 400px; overflow: auto; display: block;">
+					<ui:repeat value="#{textoModel.rutaAdjuntos}" var="rutaAdjunto">
+						<h:graphicImage rendered="#{textoModel.rutaAdjuntos != null}" library="files" name="#{rutaAdjunto}" style="max-width: 275px;"/>
+					</ui:repeat>
+				</h:panelGroup>
 			</p:column>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:center;" colspan="3">
-				<span> </span>
+			<p:column cellpadding="0" style="border-left: 1px solid #D3D3D3 !important; vertical-align: top;">
+				<p:panelGrid styleClass="columnPanelGrid" style="display: inline-table;">
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; width:150px; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="Editorial:" escape="false" />
+						</p:column>
+						<p:column style="width: 150px;">
+							<h:outputText value="#{textoModel.ED_Nombre}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="ISBN:" escape="false" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{textoModel.TX_ISBN}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="Edicion:" escape="false" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{textoModel.TX_NumEdicion}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="Nro de Paginas:" escape="false" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{textoModel.TX_NumPagina}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="Tipo de Publicacion:" escape="false" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{textoModel.PD_NombreTipPublicacion}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; height: 30px;">
+							<h:outputText style="font-weight: bold;" value="Tipo de tapa:" escape="false" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{textoModel.PD_NombreTipTapa}"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left; width:150px;">
-				<h:outputText style="font-weight: bold;" value="Editorial:" escape="false" />
-			</p:column>
-			<p:column style="width: 150px;">
-				<h:outputText value="#{textoModel.ED_Nombre}"/>
-			</p:column>
-			<p:column style="text-align: right; width: 150px;">
-				<h:outputText style="font-weight: bold;" value="Descripcion:"/>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left;">
-				<h:outputText style="font-weight: bold;" value="ISBN:" escape="false" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{textoModel.TX_ISBN}"/>
-			</p:column>
-			<p:column style="text-align: right; vertical-align: top;" rowspan="4">
-				<h:outputText value="#{textoModel.TX_Observacion}"/>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left;">
-				<h:outputText style="font-weight: bold;" value="Edicion:" escape="false" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{textoModel.TX_NumEdicion}"/>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left;">
-				<h:outputText style="font-weight: bold;" value="Nro de Paginas:" escape="false" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{textoModel.TX_NumPagina}"/>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left;">
-				<h:outputText style="font-weight: bold;" value="Tipo de Publicacion:" escape="false" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{textoModel.PD_NombreTipPublicacion}"/>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column cellpadding="0" style="border-style:solid; border-width:0px; text-align:left;">
-				<h:outputText style="font-weight: bold;" value="Tipo de tapa:" escape="false" />
-			</p:column>
-			<p:column>
-				<h:outputText value="#{textoModel.PD_NombreTipTapa}"/>
+			<p:column cellpadding="0" style="border-left: 1px solid #D3D3D3 !important; vertical-align: top;">
+				<p:panelGrid styleClass="columnPanelGrid" style="display: inline-table;">
+					<p:row>
+						<p:column style="text-align: right; width: 250px;">
+							<h:outputText style="font-weight: bold;" value="Descripcion:"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column style="text-align: right; vertical-align: top; border-left: 1px solid #D3D3D3 !important;">
+							<h:outputText value="#{textoModel.TX_Observacion}"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
 			</p:column>
 		</p:row>
 		<p:row rendered="#{empty esRetorno or !esRetorno}">
-			<p:column colspan="4" cellpadding="0" style="border-style:solid; border-width:1px; text-align:right !important;">
+			<p:column colspan="3" cellpadding="0" style="border-top: 1px solid #D3D3D3 !important; text-align:right !important;">
+				<div>
+					<p:spacer height="4" width="1"/>
+				</div>
 				<div>
 					<p:commandButton value="Solicitar"
 									ajax="true"
@@ -101,14 +136,15 @@
 			</p:column>
 		</p:row>
 		<p:row rendered="#{not empty esRetorno and esRetorno}">
-			<p:column colspan="4" cellpadding="0" style="border-style:solid; border-width:1px; text-align:right !important;">
+			<p:column colspan="3" cellpadding="0" style="border-top: 1px solid #D3D3D3 !important; text-align:right !important;">
+				<div>
+					<p:spacer height="4" width="1"/>
+				</div>
 				<div>
 					<p:commandButton value="Confirmar Intercambio"
 									ajax="false"
 									action="#{externoController.intercambiar}"
-									oncomplete="window.close();"
 									style="width: 150px;">
-						<p:confirm header="Confirmation" message="¿Confirma realizar el intercambio?" icon="ui-icon-alert" />
 					</p:commandButton>
 					<br/>
 					<br/>
@@ -117,7 +153,6 @@
 					<p:commandButton value="Cancelar Intercambio"
 									ajax="false"
 									action="#{externoController.cancelarIntercambio}"
-									oncomplete="window.close();"
 									style="width: 150px;"/>
 				</div>
 			</p:column>

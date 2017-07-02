@@ -26,10 +26,10 @@ public class AutenticacionServiceImpl implements AutenticacionService {
 
 	@Autowired
 	UsuarioDao usuarioDao;
-	
+
 	@Autowired
 	OpcionesMenuDao opcionesMenuDao;
-	
+
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, isolation = Isolation.READ_COMMITTED)
 	public Usuario autenticarUsuario(Usuario usuario) {
 		return usuarioDao.autenticarUsuario(usuario.getUS_usuario(), usuario.getUS_contrasenia());
@@ -38,6 +38,10 @@ public class AutenticacionServiceImpl implements AutenticacionService {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false, isolation = Isolation.READ_COMMITTED)
 	public List<OpcionesMenu> obtenerOpcionesMenu() {		
 		return opcionesMenuDao.obtenerOpcionesMenu();
+	}
+
+	public Usuario consultarUsuario(Usuario usuario) {
+		return usuarioDao.consultarUsuario(usuario.getUS_usuario());
 	}
 
 	@Override

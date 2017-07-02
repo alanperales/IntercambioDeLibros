@@ -9,5 +9,8 @@ import pe.sil.web.entities.Usuario;
 
 public interface AutenticacionService extends AuthenticationProvider {
 	Usuario autenticarUsuario(Usuario usuario);
+
+	Usuario consultarUsuario(Usuario usuario);
+
 	List<OpcionesMenu> obtenerOpcionesMenu();
 }

@@ -23,11 +23,12 @@ public class TextoModel implements Serializable{
 	private Integer AT_CodigoAutor;
 	private String AT_NombreAutor;
 	private Integer TX_EsPublico;
-	private Integer TX_EsComerciable;	
+	private Integer TX_EsComerciable;
 	private String id;
 	private String idOfertados;
 	private String PD_NombreTipPublicacion;
 	private String PD_NombreTipTapa;
+	private String[] rutaAdjuntos;
 	
 	public TextoModel(){
 		
@@ -183,5 +184,13 @@ public class TextoModel implements Serializable{
 
 	public void setPD_NombreTipTapa(String pD_NombreTipTapa) {
 		PD_NombreTipTapa = pD_NombreTipTapa;
+	}
+
+	public String[] getRutaAdjuntos() {
+		return rutaAdjuntos;
+	}
+
+	public void setRutaAdjuntos(String[] rutaAdjuntos) {
+		this.rutaAdjuntos = rutaAdjuntos;
 	}
 }

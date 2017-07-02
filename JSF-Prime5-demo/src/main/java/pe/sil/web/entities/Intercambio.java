@@ -14,7 +14,8 @@ public class Intercambio extends SilEntidad{
 	private String MI_ISBN;
 	private String MI_NumEdicion;
 	private String MI_AnioEdicion;
-	
+	private String ED_Nombre;
+
 	public Intercambio(){}
 
 	public Integer getMI_CodigoMovIntercambio() {
@@ -87,5 +88,13 @@ public class Intercambio extends SilEntidad{
 
 	public void setMI_AnioEdicion(String mI_AnioEdicion) {
 		MI_AnioEdicion = mI_AnioEdicion;
-	}	
+	}
+
+	public String getED_Nombre() {
+		return ED_Nombre;
+	}
+
+	public void setED_Nombre(String eD_Nombre) {
+		ED_Nombre = eD_Nombre;
+	}
 }

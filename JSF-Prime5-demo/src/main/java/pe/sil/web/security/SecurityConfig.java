@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/login.xhtml").permitAll()
-				.antMatchers("/perfil.xhtml").permitAll()
 				.antMatchers("/resources/**").permitAll()
 				.antMatchers("/javax.faces.resource/**").permitAll()
 				.anyRequest().authenticated()
@@ -45,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
-				.logoutUrl("/perfil.xhtml")
 				.and()
 			.httpBasic()
 				.and()

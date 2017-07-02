@@ -18,6 +18,7 @@ public class ReporteIntercambio extends SilEntidad{
 		this.intercambioDesc = intercambioDesc;
 	}
 
+	private String idMiMovimiento;
 	private String idSolicitados;
 	private String idOfertados;
 	private String PE_CodigoPersona;
@@ -31,6 +32,7 @@ public class ReporteIntercambio extends SilEntidad{
 	private String longitud;
 	private String distancia;
 	private String US_usuario;
+	private String rutaAdjuntos;
 	
 	public ReporteIntercambio(){}
 
@@ -38,116 +40,101 @@ public class ReporteIntercambio extends SilEntidad{
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	public String getTipoIntercambio() {
 		return tipoIntercambio;
 	}
 
-
 	public void setTipoIntercambio(String tipoIntercambio) {
 		this.tipoIntercambio = tipoIntercambio;
 	}
 
+	public String getIdMiMovimiento() {
+		return idMiMovimiento;
+	}
+
+	public void setIdMiMovimiento(String idMiMovimiento) {
+		this.idMiMovimiento = idMiMovimiento;
+	}
 
 	public String getIdSolicitados() {
 		return idSolicitados;
 	}
 
-
 	public void setIdSolicitados(String idSolicitados) {
 		this.idSolicitados = idSolicitados;
 	}
-
 
 	public String getIdOfertados() {
 		return idOfertados;
 	}
 
-
 	public void setIdOfertados(String idOfertados) {
 		this.idOfertados = idOfertados;
 	}
-
 
 	public String getPE_CodigoPersona() {
 		return PE_CodigoPersona;
 	}
 
-
 	public void setPE_CodigoPersona(String pE_CodigoPersona) {
 		PE_CodigoPersona = pE_CodigoPersona;
 	}
-
 
 	public String getNombrePersona() {
 		return NombrePersona;
 	}
 
-
 	public void setNombrePersona(String nombrePersona) {
 		NombrePersona = nombrePersona;
 	}
-
 
 	public String getIdSolicitado() {
 		return idSolicitado;
 	}
 
-
 	public void setIdSolicitado(String idSolicitado) {
 		this.idSolicitado = idSolicitado;
 	}
-
 
 	public String getTituloS() {
 		return TituloS;
 	}
 
-
 	public void setTituloS(String tituloS) {
 		TituloS = tituloS;
 	}
-
 
 	public String getIdOfertado() {
 		return idOfertado;
 	}
 
-
 	public void setIdOfertado(String idOfertado) {
 		this.idOfertado = idOfertado;
 	}
-
 
 	public String getTituloO() {
 		return TituloO;
 	}
 
-
 	public void setTituloO(String tituloO) {
 		TituloO = tituloO;
 	}
-
 
 	public String getLatitud() {
 		return latitud;
 	}
 
-
 	public void setLatitud(String latitud) {
 		this.latitud = latitud;
 	}
 
-
 	public String getLongitud() {
 		return longitud;
 	}
-
 
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
@@ -156,7 +143,6 @@ public class ReporteIntercambio extends SilEntidad{
 	public String getDistancia() {
 		return distancia;
 	}
-
 
 	public void setDistancia(String distancia) {
 		this.distancia = distancia;
@@ -176,5 +162,13 @@ public class ReporteIntercambio extends SilEntidad{
 
 	public void setUS_usuario(String uS_usuario) {
 		US_usuario = uS_usuario;
+	}
+
+	public String getRutaAdjuntos() {
+		return rutaAdjuntos;
+	}
+
+	public void setRutaAdjuntos(String rutaAdjuntos) {
+		this.rutaAdjuntos = rutaAdjuntos;
 	}
 }

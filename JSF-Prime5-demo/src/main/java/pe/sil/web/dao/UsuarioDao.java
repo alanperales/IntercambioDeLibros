@@ -8,7 +8,9 @@ import pe.sil.web.entities.Usuario;
 public interface UsuarioDao extends SilDao<Usuario> {
 	
 	Usuario autenticarUsuario(@Param("username") String username,
-							  @Param("password") String password);	
+							  @Param("password") String password);
+
+	Usuario consultarUsuario(@Param("username") String username);
 }
 
 
