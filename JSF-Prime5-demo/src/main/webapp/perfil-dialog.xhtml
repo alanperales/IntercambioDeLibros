@@ -1,0 +1,142 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	 <p:panelGrid styleClass="columnPanelGrid" style="border-style:solid; border-width:1px; display: inline-table;">
+		<p:row>
+			<p:column colspan="2">
+				<h:outputText style="font-weight: bold; display: block; font-size: 36px; margin: 1px; padding: 2px; width: 100%;" value="#{usuarioModel.usuario}"/>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="2">
+				<h:outputText style="font-weight: bold; display: block; font-size: 28px; margin: 1px; padding: 2px; width: 100%;" value="#{usuarioModel.ubigeo}"/>
+			</p:column>
+		</p:row>
+		<!--
+		<p:row>
+			<p:column style="border-bottom: 1px solid #D3D3D3 !important;" colspan="2">
+				<h:outputText styleClass="sesion" style="font-weight: bold;" value="Gustos literarios"/>
+			</p:column>
+		</p:row>
+		-->
+		<p:row>
+			<p:column style="width: 300px;">
+				<h:panelGroup id="pnlUsuTxOfresidos">
+					<p:dataTable id="tblUsuTxOfresidos"
+						value="#{usuarioModel.listaOfertados}"
+						widgetVar="tblUsuTxOfresidos"
+						var="ofertadosI"
+						paginator="true" rows="10" rowIndexVar="rowInfo"
+						dynamic="true" resizableColumns="false" paginatorPosition="bottom"
+						scrollable="true" lazy="true"
+						style="border-style: solid; border-width: 0px;"
+						emptyMessage="No se encontraron registros.">
+						<f:facet name="header">
+							<h:outputText value="Textos Ofrecidos" />
+						</f:facet>
+						<p:column style="text-align: center !important;">
+							<f:facet name="header">
+								<h:outputText value="Titulo" escape="false" />
+							</f:facet>
+							<h:outputText value="#{ofertadosI.TX_Titulo}" />
+						</p:column>
+						<p:column style="text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Autor" />
+							</f:facet>
+							<h:outputText value="#{ofertadosI.AT_Nombre} #{ofertadosI.AT_ApellidoPaterno}" />
+						</p:column>
+						<p:column style="text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Editorial" />
+							</f:facet>
+							<h:outputText value="#{ofertadosI.ED_Nombre}" />
+						</p:column>
+						<p:column style="text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Edición" escape="false"/>
+							</f:facet>
+							<h:outputText value="#{ofertadosI.MI_AnioEdicion}" />
+						</p:column>
+						<p:column style="text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="ISBN" escape="false"/>
+							</f:facet>
+							<h:outputText value="#{ofertadosI.MI_ISBN}"/>
+						</p:column>
+						<!--
+						<p:column style="width:25%; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Ver" escape="false" />
+							</f:facet>
+							<p:tooltip for="btnVer" value="Ver" showEffect="fade" hideEffect="fade" />
+							<p:commandLink id="btnVer" update=":pnlUsuTxOfresidos:dialogVer"
+								oncomplete="PF('dialogVer').show();"
+								action="#{ofertadosIntercambioController.showVerForm(ofertadosI)}">
+								<p:graphicImage value="/resources/themePrime/imagenes/icon_edit.png" alt="Editar" width="16" height="16" />
+							</p:commandLink>
+						</p:column>
+						-->
+					</p:dataTable>
+				</h:panelGroup>
+			</p:column>
+			<p:column style="width: 300px;">
+				<h:panelGroup id="pnlUsuTxSolicitados">
+					<p:dataTable id="tblUsuTxSolicitados"
+						value="#{usuarioModel.listaSolicitados}"
+						widgetVar="tblUsuTxSolicitados"
+						var="solicitadosI"
+						paginator="true" rows="10" rowIndexVar="rowInfo"
+						dynamic="true" resizableColumns="false" paginatorPosition="bottom"
+						scrollable="true" lazy="true"
+						style="border-style: solid; border-width: 0px;"
+						emptyMessage="No se encontraron registros.">
+						<f:facet name="header">
+							<h:outputText value="Textos Solicitados" />
+						</f:facet>
+						<p:column style="text-align: center !important;">
+							<f:facet name="header">
+								<h:outputText value="Titulo" escape="false" />
+							</f:facet>
+							<h:outputText value="#{solicitadosI.TX_Titulo}" />
+						</p:column>
+						<p:column style="text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Autor" />
+							</f:facet>
+							<h:outputText value="#{solicitadosI.AT_Nombre} #{ofertadosI.AT_ApellidoPaterno}" />
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</p:column>
+		</p:row>
+		<p:row rendered="#{empty esRetornoU or !esRetornoU}">
+			<p:column colspan="3" cellpadding="0" style="border-top: 1px solid #D3D3D3 !important; text-align:right !important;">
+				<div>
+					<p:spacer height="4" width="1"/>
+				</div>
+				<div>
+					<p:commandButton value="Volver"
+									process="@this"
+									oncomplete="PF('dialogVerUsuario').hide();"
+									style="width: 150px;" />
+				</div>
+			</p:column>
+		</p:row>
+		<p:row rendered="#{not empty esRetornoU and esRetornoU}">
+			<p:column colspan="3" cellpadding="0" style="border-top: 1px solid #D3D3D3 !important; text-align:right !important;">
+				<div>
+					<p:spacer height="4" width="1"/>
+				</div>
+				<div>
+					<p:commandButton value="Ir a Bandeja de Intercambio"
+									ajax="false"
+									action="#{perfilController.cancelarConsulta}"
+									style="width: 150px;"/>
+				</div>
+			</p:column>
+		</p:row>
+	</p:panelGrid>
+</ui:composition>
