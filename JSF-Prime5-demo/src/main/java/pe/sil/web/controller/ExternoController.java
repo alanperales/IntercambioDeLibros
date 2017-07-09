@@ -24,7 +24,7 @@ import pe.sil.web.service.TextoService;
 import pe.sil.web.util.Mail;
 
 @Controller
-@Scope("request")
+@Scope("session")
 public class ExternoController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -158,9 +158,6 @@ public class ExternoController implements Serializable {
 		// Enviar mensajes de Intercambio: Enviar mensaje a solicitante
 		String mensaje = formatearMsgSolicitante(rep.getUS_usuario(), loginModel.getUsuario(), loginModel.getEmailPersonal());
 		enviarEmail(rep.getEmail(), mensaje);
-		// Enviar mensajes de Intercambio: Enviar mensaje a confirmante
-		mensaje = formatearMsgConfirmante(loginModel.getUsuario(), rep.getUS_usuario(), rep.getEmail());
-		enviarEmail("", mensaje);
 
 		limpiarSesion();
 
@@ -194,7 +191,6 @@ public class ExternoController implements Serializable {
 		email.setPassMail("UPC2017Fanny");
 		email.setUserMail("fanny.salinasf@gmail.com");
 
-		//email.sendMail("From", "", "To","CC", "Title", "message", null, null, true, false);
 		log.info("correo " + reporteIntercambioModel.getReporteIntercambio().getEmail());
 		log.info("mensaje " +mensaje);
 		email.sendMail("fanny.salinasf@gmail.com", "", correo, null, "Notificacion Intercambio de Libros", mensaje, null, null, true, false);
@@ -203,7 +199,7 @@ public class ExternoController implements Serializable {
 	private String formatearMsgSolicitante(String usuario, String usuarioO, String emailO){
 		request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
-		String linkPerfilO = "http://" + request.getRequestURL() + "/con-perfil?u=" + usuarioO;
+		String linkPerfilO = "http://" + request.getHeader("Host") + request.getContextPath() + "/perfil.xhtml?u=" + usuarioO;
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<html>");
@@ -238,7 +234,7 @@ public class ExternoController implements Serializable {
 	private String formatearMsgConfirmante(String usuario, String usuarioS, String emailS){
 		request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
-		String linkPerfilS = "http://" + request.getRequestURL() + "/con-perfil?u=" + usuarioS;
+		String linkPerfilS = "http://" + request.getHeader("Host") + request.getContextPath() + "/perfil.xhtml?u=" + usuarioS;
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<html>");

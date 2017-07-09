@@ -197,7 +197,7 @@ public class ReporteIntercambioController {
 
 		// Se envia un correo al usuario que ofreció el texto con información
 		// de usuario que solicitó el intercambio
-		String mensaje = formatearMsg1(textoModel.getId(), textoModel.getIdOfertados(), reporteIntercambioModel.getReporteIntercambio().getIdSolicitado(), reporteIntercambioModel.getReporteIntercambio().getIdOfertado(), loginModel.getUsuario(), reporteIntercambioModel.getReporteIntercambio().getTituloO(), reporteIntercambioModel.getReporteIntercambio().getTituloS());
+		String mensaje = formatearMsg1(textoModel.getId(), textoModel.getIdOfertados(), reporteIntercambioModel.getReporteIntercambio().getIdSolicitado(), reporteIntercambioModel.getReporteIntercambio().getIdOfertado(), loginModel.getUsuario(), reporteIntercambioModel.getReporteIntercambio().getTituloS(), reporteIntercambioModel.getReporteIntercambio().getTituloO());
 		enviarEmail(reporteIntercambioModel.getReporteIntercambio().getEmail(), mensaje);
 	}
 
